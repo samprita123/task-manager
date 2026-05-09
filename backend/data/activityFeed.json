@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "user": "Samprita patra",
+    "action": "created",
+    "target": "Dashboard Redesign",
+    "time": "2 hours ago"
+  },
+  {
+    "id": 2,
+    "user": "Aarav Sharma",
+    "action": "updated progress",
+    "target": "Dashboard Redesign",
+    "time": "5 hours ago"
+  }
+]

@@ -1,0 +1,185 @@
+[
+  {
+    "id": "p1",
+    "title": "Dashboard Redesign",
+    "description": "Update the main dashboard UI to be project-centric with advanced visualizations.",
+    "assignedMembers": [
+      {
+        "email": "zoya@ethara.ai",
+        "role": "Project Lead"
+      },
+      {
+        "email": "aarav@ethara.ai",
+        "role": "Frontend Dev"
+      },
+      {
+        "email": "ishani@ethara.ai",
+        "role": "UI Designer"
+      }
+    ],
+    "status": "In Progress",
+    "progress": 45,
+    "dueDate": "2026-05-14T11:23:29.896Z",
+    "priority": "High",
+    "comments": [
+      {
+        "user": "sam123@gmail.com",
+        "text": "Please prioritize the chart animations.",
+        "time": "2026-05-01T10:00:00Z"
+      }
+    ],
+    "actions": [
+      {
+        "phase": "Design",
+        "text": "Completed UI wireframes",
+        "user": "ishani@ethara.ai",
+        "progress": 30,
+        "time": "2026-05-02T14:00:00Z"
+      },
+      {
+        "phase": "Development",
+        "text": "Initialized React project and basic routing",
+        "user": "aarav@ethara.ai",
+        "progress": 45,
+        "time": "2026-05-03T16:00:00Z"
+      }
+    ]
+  },
+  {
+    "id": "p2",
+    "title": "Backend API Refactor",
+    "description": "Implement secure RBAC authentication layers and optimize database queries.",
+    "assignedMembers": [
+      {
+        "email": "anika@ethara.ai",
+        "role": "Lead Architect"
+      },
+      {
+        "email": "vihaan@ethara.ai",
+        "role": "Backend Dev"
+      }
+    ],
+    "status": "Completed",
+    "progress": 100,
+    "dueDate": "2026-05-07T11:23:29.896Z",
+    "priority": "Medium",
+    "comments": [],
+    "actions": []
+  },
+  {
+    "id": "1778327696410",
+    "title": "ShopFree",
+    "description": "an e commerce side which gives free gift in every purchase of user",
+    "status": "Pending",
+    "progress": 23,
+    "dueDate": "2026-05-22",
+    "priority": "Medium",
+    "createdAt": "2026-05-09T11:54:56.412Z",
+    "assignedMembers": [
+      {
+        "email": "anika@ethara.ai",
+        "role": "developer"
+      },
+      {
+        "email": "neha@ethara.ai",
+        "role": "UI, UX designer"
+      },
+      {
+        "email": "pranav@ethara.ai",
+        "role": "tester"
+      }
+    ]
+  },
+  {
+    "id": "1778328380643",
+    "title": "AI chatbot for coffee shop",
+    "description": "develop a admin dashboard to monitor the chatbot conversation, and user feedback",
+    "status": "Pending",
+    "progress": 0,
+    "dueDate": "2026-05-15",
+    "priority": "High",
+    "createdAt": "2026-05-09T12:06:20.643Z",
+    "assignedMembers": [
+      {
+        "email": "smith@gmail.com",
+        "role": "software developer"
+      },
+      {
+        "email": "kabir@ethara.ai",
+        "role": "designer"
+      },
+      {
+        "email": "sanya@ethara.ai",
+        "role": "ML engineer"
+      }
+    ]
+  },
+  {
+    "id": "1778328445357",
+    "title": "customer support ticket portal",
+    "description": "here customer can rise a issue and customer support mange the  request efficiently",
+    "status": "Pending",
+    "progress": 0,
+    "dueDate": "2026-05-29",
+    "priority": "Low",
+    "createdAt": "2026-05-09T12:07:25.357Z",
+    "assignedMembers": [
+      {
+        "email": "ananya@ethara.ai",
+        "role": "developer"
+      },
+      {
+        "email": "meera@ethara.ai",
+        "role": "developer"
+      },
+      {
+        "email": "aryan@ethara.ai",
+        "role": "developer"
+      }
+    ]
+  },
+  {
+    "id": "1778328505130",
+    "title": "healthiify",
+    "description": "AI powered assistant for appointment booking and basic health query support",
+    "status": "Pending",
+    "progress": 10,
+    "dueDate": "2026-05-22",
+    "priority": "High",
+    "createdAt": "2026-05-09T12:08:25.130Z",
+    "assignedMembers": [
+      {
+        "email": "kavya@ethara.ai",
+        "role": "devOps"
+      },
+      {
+        "email": "arjun@ethara.ai",
+        "role": "developer"
+      }
+    ]
+  },
+  {
+    "id": "1778328613559",
+    "title": "face recognition attendance app",
+    "description": "for International Cry-bird school, they need a speed fast process attendance syatem software design to smoothen the attendance process",
+    "status": "Pending",
+    "progress": 0,
+    "dueDate": "2026-05-17",
+    "priority": "Medium",
+    "createdAt": "2026-05-09T12:10:13.559Z",
+    "assignedMembers": [
+      {
+        "email": "diya@ethara.ai",
+        "role": "ML engineer"
+      },
+      {
+        "email": "dev@ethara.ai",
+        "role": "backend dev"
+      },
+      {
+        "email": "riya@ethara.ai",
+        "role": "devOps"
+      }
+    ]
+  }
+]
