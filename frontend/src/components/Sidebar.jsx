@@ -20,15 +20,13 @@ export default function Sidebar({ role, onLogout, isOpen, onClose }) {
 
   const SidebarContent = () => (
     <div className="w-64 bg-surface h-full flex flex-col border-r border-gray-800 shadow-xl overflow-y-auto shrink-0">
-      {/* Header */}
       <div className="p-6 flex items-center justify-between mb-8">
         <div className="flex items-center">
           <img src="/src/assets/logo.png" alt="Logo" className="w-12 h-12 mr-3 object-contain drop-shadow-xl" />
           <h2 className="text-xl font-bold tracking-tight text-white leading-tight">
-            Ethara<br />AI
+            Task<br />Manager
           </h2>
         </div>
-        {/* Close button — only visible on mobile */}
         <button
           onClick={onClose}
           className="lg:hidden text-gray-400 hover:text-white transition p-1"
@@ -38,7 +36,6 @@ export default function Sidebar({ role, onLogout, isOpen, onClose }) {
         </button>
       </div>
 
-      {/* Nav Links */}
       <nav className="flex-1 px-4 space-y-2 relative">
         {links.map((link) => (
           <NavLink

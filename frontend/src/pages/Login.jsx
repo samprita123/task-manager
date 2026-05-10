@@ -178,7 +178,7 @@ export default function Login({
             >
 
                <div className="mb-8">
-                  <img src="/src/assets/logo.png" alt="Logo" className="w-16 h-16 mb-6 object-contain" />
+                  <img src="/logo.png" alt="Logo" className="w-16 h-16 mb-6 object-contain" />
 
                   <h2 className="text-3xl font-bold text-white mb-2">
                      Welcome Back
