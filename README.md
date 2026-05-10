@@ -1,17 +1,17 @@
-# Ethara AI - Advanced Team & Project Management
+# Ethara AI - Team Task Management
 
-Ethara AI is a modern, full-stack project management platform designed for real-time collaboration, performance tracking, and data-driven decision making. The application features a high-end "Smoothing" pastel UI with cloud-synced analytics.
+Ethara AI is a modern, full-stack Team Task management platform designed for real-time collaboration, performance tracking, and data-driven decision making. The application features a high-end "Smoothing" pastel UI with cloud-synced analytics.
 
 ## 🚀 Live Access & Login
 
 ### **Admin Credentials**
 To access the full management suite, use the following credentials:
 *   **Email:** `sam123@gmail.com`
-*   **Password:** `sam12345678`
+*   **Password:** `admin123`
 *   **Role Selection:** Must select **"Admin"** from the toggle on the login page.
 
 ### **Member Access**
-Team members can sign up via the Signup page or login with their registered emails (e.g., `member1@example.com`).
+Team members can sign up via the Signup page or login with their registered emails (e.g., `smith@gmail.com`, password- `smith123`, or more like that...).
 
 ---
 
@@ -68,4 +68,4 @@ The application is fully connected to **MongoDB Atlas**. All data updates are pe
 
 ---
 
-**Developed by Antigravity AI for Ethara AI.**
+**Developed by samprita Patra for Ethara AI-Drive shortlist Process.**
