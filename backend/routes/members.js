@@ -1,15 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const { users, saveData } = require('../db');
+const User = require('../models/User');
 
 // Get own profile (All roles)
-router.get('/me', (req, res) => {
-    const me = users.find(u => u.email === req.userEmail);
-    if (!me) return res.status(404).json({ error: 'Profile not found' });
-    return res.json(me);
+router.get('/me', async (req, res) => {
+    try {
+        const me = await User.findOne({ email: req.userEmail });
+        if (!me) return res.status(404).json({ error: 'Profile not found' });
+        return res.json(me);
+    } catch (err) {
+        return res.status(500).json({ error: err.message });
+    }
 });
 
-// Admin only routes below
+// Admin only middleware
 router.use((req, res, next) => {
     if (req.userRole !== 'Admin') {
         return res.status(403).json({ error: 'Admin access required for member management' });
@@ -18,47 +22,57 @@ router.use((req, res, next) => {
 });
 
 // Get all members (excluding admins)
-router.get('/', (req, res) => {
-    return res.json(users.filter(u => u.role === 'Member'));
+router.get('/', async (req, res) => {
+    try {
+        const members = await User.find({ role: 'Member' });
+        return res.json(members);
+    } catch (err) {
+        return res.status(500).json({ error: err.message });
+    }
 });
 
-// Add a member
-router.post('/', (req, res) => {
-    const { name, email, role } = req.body;
-    const newUser = {
-        id: String(Date.now()),
-        name,
-        email,
-        role: role || 'Member',
-        status: 'Active',
-        assignedProjects: [],
-        completedProjects: 0,
-        lastActivity: new Date().toISOString()
-    };
-    users.push(newUser);
-    saveData();
-    return res.status(201).json(newUser);
+// Add a member (Admin manually adds)
+router.post('/', async (req, res) => {
+    try {
+        const { name, email, role } = req.body;
+        const newUser = new User({
+            name,
+            email,
+            role: role || 'Member',
+            status: 'Active',
+            assignedProjects: [],
+            completedProjects: 0,
+            lastActivity: new Date(),
+            password: 'member123' // Default password for manually added members
+        });
+        await newUser.save();
+        return res.status(201).json(newUser);
+    } catch (err) {
+        return res.status(500).json({ error: err.message });
+    }
 });
 
 // Disable/Enable member
-router.patch('/:id/status', (req, res) => {
-    const { status } = req.body;
-    const user = users.find(u => u.id === req.params.id);
-    if (!user) return res.status(404).json({ error: 'User not found' });
-    
-    user.status = status;
-    saveData();
-    return res.json(user);
+router.patch('/:id/status', async (req, res) => {
+    try {
+        const { status } = req.body;
+        const user = await User.findByIdAndUpdate(req.params.id, { status }, { new: true });
+        if (!user) return res.status(404).json({ error: 'User not found' });
+        return res.json(user);
+    } catch (err) {
+        return res.status(500).json({ error: err.message });
+    }
 });
 
 // Remove member
-router.delete('/:id', (req, res) => {
-    const index = users.findIndex(u => u.id === req.params.id);
-    if (index === -1) return res.status(404).json({ error: 'User not found' });
-    
-    const deleted = users.splice(index, 1);
-    saveData();
-    return res.json(deleted[0]);
+router.delete('/:id', async (req, res) => {
+    try {
+        const deleted = await User.findByIdAndDelete(req.params.id);
+        if (!deleted) return res.status(404).json({ error: 'User not found' });
+        return res.json(deleted);
+    } catch (err) {
+        return res.status(500).json({ error: err.message });
+    }
 });
 
 module.exports = router;
