@@ -1,4 +1,3 @@
-import { API_BASE_URL, ENDPOINTS } from '../api/config';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
@@ -52,7 +51,7 @@ export default function Projects({ role, email }) {
 
     try {
 
-      const res = await fetch(`${API_BASE_URL}/projects`, {
+      const res = await fetch('https://task-manager-kmh2.onrender.com/api/projects', {
         headers: {
           'x-user-role': role,
           'x-user-email': email
@@ -118,7 +117,7 @@ export default function Projects({ role, email }) {
     try {
 
       const res = await fetch(
-        `http://localhost:5000/api/projects/${id}/progress`,
+        `https://task-manager-kmh2.onrender.com/api/projects/${id}/progress`,
         {
           method: 'PATCH',
 

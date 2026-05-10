@@ -1,4 +1,3 @@
-import { API_BASE_URL, ENDPOINTS } from '../api/config';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { PieChart as PieIcon, TrendingUp } from 'lucide-react';
@@ -28,22 +27,22 @@ export default function Dashboard({ role, email }) {
       const fetchDashboard = async () => {
          try {
             const responses = await Promise.all([
-               fetch(`${API_BASE_URL}/projects`, {
+               fetch('https://task-manager-kmh2.onrender.com/api/projects', {
                   headers: { 'x-user-role': role, 'x-user-email': email }
                }),
-               role === 'Admin' ? fetch(`${API_BASE_URL}/members`, {
+               role === 'Admin' ? fetch('https://task-manager-kmh2.onrender.com/api/members', {
                   headers: { 'x-user-role': role, 'x-user-email': email }
                }) : Promise.resolve({ ok: true, json: () => [] }),
-               fetch(`${API_BASE_URL}/projects/activity`, {
+               fetch('https://task-manager-kmh2.onrender.com/api/projects/activity', {
                   headers: { 'x-user-role': role, 'x-user-email': email }
                }),
-               role === 'Admin' ? fetch(`${API_BASE_URL}/projects/stats/monthly`, {
+               role === 'Admin' ? fetch('https://task-manager-kmh2.onrender.com/api/projects/stats/monthly', {
                   headers: { 'x-user-role': role, 'x-user-email': email }
                }) : Promise.resolve({ ok: true, json: () => [] }),
-               role === 'Admin' ? fetch(`${API_BASE_URL}/projects/stats/performance`, {
+               role === 'Admin' ? fetch('https://task-manager-kmh2.onrender.com/api/projects/stats/performance', {
                   headers: { 'x-user-role': role, 'x-user-email': email }
                }) : Promise.resolve({ ok: true, json: () => [] }),
-               role === 'Admin' ? fetch(`${API_BASE_URL}/projects/stats/summary`, {
+               role === 'Admin' ? fetch('https://task-manager-kmh2.onrender.com/api/projects/stats/summary', {
                   headers: { 'x-user-role': role, 'x-user-email': email }
                }) : Promise.resolve({ ok: true, json: () => [] })
             ]);
@@ -300,15 +299,15 @@ export default function Dashboard({ role, email }) {
                               <td className="px-6 py-4 text-xs font-bold text-white group-hover:text-primary transition">{p.title}</td>
                               <td className="px-6 py-4">
                                  <span className={`text-[10px] px-2 py-1 rounded-md font-black uppercase tracking-widest ${p.priority === 'High' ? 'bg-red-400/10 text-red-400' :
-                                       p.priority === 'Medium' ? 'bg-yellow-400/10 text-yellow-400' : 'bg-blue-400/10 text-blue-400'
+                                    p.priority === 'Medium' ? 'bg-yellow-400/10 text-yellow-400' : 'bg-blue-400/10 text-blue-400'
                                     }`}>{p.priority}</span>
                               </td>
                               <td className="px-6 py-4 text-[10px] font-mono text-gray-400">{new Date(p.dueDate).toLocaleDateString()}</td>
                               <td className="px-6 py-4">
                                  <span className={`text-[10px] px-2 py-1 rounded-full font-black uppercase tracking-widest ${p.status === 'Completed' ? 'bg-success/10 text-success' :
-                                       p.status === 'In Progress' ? 'bg-primary/10 text-primary' :
-                                          p.status === 'Cancelled' ? 'bg-danger/10 text-danger' :
-                                             'bg-warning/10 text-warning'
+                                    p.status === 'In Progress' ? 'bg-primary/10 text-primary' :
+                                       p.status === 'Cancelled' ? 'bg-danger/10 text-danger' :
+                                          'bg-warning/10 text-warning'
                                     }`}>{p.status || 'Pending'}</span>
                               </td>
                            </tr>

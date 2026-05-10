@@ -1,4 +1,3 @@
-import { API_BASE_URL, ENDPOINTS } from '../api/config';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trash2, UserX, Briefcase, Mail, CheckCircle, ShieldAlert, Users, Info } from 'lucide-react';
@@ -14,7 +13,8 @@ export default function TeamMembers({ email }) {
       const fetchMembers = async () => {
          try {
             const res = await fetch(`${API_BASE_URL}/members`, {
-               headers: { 'x-user-role': 'Admin', 'x-user-email': email }
+               headers: { 'x-user-role': 'Admin', 'x-user-email': email },
+               cache: 'no-store'
             });
             if (res.ok) {
                setMembers(await res.json());
@@ -25,9 +25,9 @@ export default function TeamMembers({ email }) {
             setLoading(false);
          }
       };
-      
+
       fetchMembers();
-      
+
       const interval = setInterval(fetchMembers, 10000);
       return () => clearInterval(interval);
    }, [email]);
@@ -40,7 +40,7 @@ export default function TeamMembers({ email }) {
    const removeMember = async (id) => {
       if (!window.confirm("Are you sure you want to remove this member?")) return;
       try {
-         const res = await fetch(`http://localhost:5000/api/members/${id}`, {
+         const res = await fetch(`https://task-manager-kmh2.onrender.com/api/members/${id}`, {
             method: 'DELETE',
             headers: { 'x-user-role': 'Admin', 'x-user-email': email }
          });
@@ -53,7 +53,7 @@ export default function TeamMembers({ email }) {
    const toggleStatus = async (id, currentStatus) => {
       const newStatus = currentStatus === 'Active' ? 'Inactive' : 'Active';
       try {
-         const res = await fetch(`http://localhost:5000/api/members/${id}/status`, {
+         const res = await fetch(`https://task-manager-kmh2.onrender.com/api/members/${id}/status`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json', 'x-user-role': 'Admin', 'x-user-email': email },
             body: JSON.stringify({ status: newStatus })
@@ -71,10 +71,10 @@ export default function TeamMembers({ email }) {
    const unassigned = Math.max(0, total - involved);
 
    if (loading) return (
-     <div className="h-screen flex flex-col items-center justify-center space-y-4">
-        <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-        <p className="text-gray-400 font-bold uppercase tracking-widest text-xs">Syncing Team Data...</p>
-     </div>
+      <div className="h-screen flex flex-col items-center justify-center space-y-4">
+         <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+         <p className="text-gray-400 font-bold uppercase tracking-widest text-xs">Syncing Team Data...</p>
+      </div>
    );
 
    return (
@@ -158,10 +158,9 @@ export default function TeamMembers({ email }) {
                         </div>
                         <div className="flex justify-between items-center text-xs">
                            <span className="text-gray-500 font-bold uppercase tracking-widest">Ready Status</span>
-                           <span className={`px-2 py-1 rounded-lg text-[9px] font-black uppercase ${
-                             (member.assignedProjects?.length || 0) < 3 ? 'bg-success/10 text-success' : 'bg-warning/10 text-warning'
-                           }`}>
-                             {(member.assignedProjects?.length || 0) < 3 ? 'READY' : 'BUSY'}
+                           <span className={`px-2 py-1 rounded-lg text-[9px] font-black uppercase ${(member.assignedProjects?.length || 0) < 3 ? 'bg-success/10 text-success' : 'bg-warning/10 text-warning'
+                              }`}>
+                              {(member.assignedProjects?.length || 0) < 3 ? 'READY' : 'BUSY'}
                            </span>
                         </div>
                      </div>
