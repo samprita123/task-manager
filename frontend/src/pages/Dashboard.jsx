@@ -159,50 +159,50 @@ export default function Dashboard({ role, email }) {
    return (
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-8 pb-12">
          <div>
-            <h2 className="text-3xl font-bold text-white">Advanced Project Analytics</h2>
+            <h2 className="text-3xl font-bold text-slate-900">Advanced Project Analytics</h2>
             <p className="text-gray-400 mt-1">Real-time performance metrics and monthly reporting.</p>
          </div>
 
          {/* Monthly Trends Table-like Widget (Recieved, Completed, Pending, Cancelled) */}
          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-surface p-6 rounded-2xl border border-gray-800 border-l-4 border-l-blue-500">
+            <div className="bg-surface p-6 rounded-2xl border border-slate-200 border-l-4 border-l-blue-500">
                <p className="text-xs text-gray-500 uppercase font-black">Monthly Received</p>
-               <h4 className="text-3xl font-black text-white mt-1">{monthlyStats.reduce((sum, d) => sum + d.received, 0)}</h4>
+               <h4 className="text-3xl font-black text-slate-900 mt-1">{monthlyStats.reduce((sum, d) => sum + d.received, 0)}</h4>
             </div>
-            <div className="bg-surface p-6 rounded-2xl border border-gray-800 border-l-4 border-l-green-500">
+            <div className="bg-surface p-6 rounded-2xl border border-slate-200 border-l-4 border-l-green-500">
                <p className="text-xs text-gray-500 uppercase font-black">Monthly Completed</p>
-               <h4 className="text-3xl font-black text-white mt-1">{monthlyStats.reduce((sum, d) => sum + d.completed, 0)}</h4>
+               <h4 className="text-3xl font-black text-slate-900 mt-1">{monthlyStats.reduce((sum, d) => sum + d.completed, 0)}</h4>
             </div>
-            <div className="bg-surface p-6 rounded-2xl border border-gray-800 border-l-4 border-l-orange-500">
+            <div className="bg-surface p-6 rounded-2xl border border-slate-200 border-l-4 border-l-orange-500">
                <p className="text-xs text-gray-500 uppercase font-black">Monthly Pending</p>
-               <h4 className="text-3xl font-black text-white mt-1">{monthlyStats.reduce((sum, d) => sum + d.pending, 0)}</h4>
+               <h4 className="text-3xl font-black text-slate-900 mt-1">{monthlyStats.reduce((sum, d) => sum + d.pending, 0)}</h4>
             </div>
-            <div className="bg-surface p-6 rounded-2xl border border-gray-800 border-l-4 border-l-red-500">
+            <div className="bg-surface p-6 rounded-2xl border border-slate-200 border-l-4 border-l-red-500">
                <p className="text-xs text-gray-500 uppercase font-black">Monthly Cancelled</p>
-               <h4 className="text-3xl font-black text-white mt-1">{monthlyStats.reduce((sum, d) => sum + d.cancelled, 0)}</h4>
+               <h4 className="text-3xl font-black text-slate-900 mt-1">{monthlyStats.reduce((sum, d) => sum + d.cancelled, 0)}</h4>
             </div>
          </div>
 
          {/* Member Involvement Metrics (NEW) */}
          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-surface/50 p-6 rounded-2xl border border-gray-800 hover:bg-surface transition group">
+            <div className="bg-surface/50 p-6 rounded-2xl border border-slate-200 hover:bg-surface transition group">
                <p className="text-xs text-gray-500 uppercase font-black group-hover:text-primary transition">Total Registry Members</p>
                <div className="flex items-center justify-between mt-2">
-                  <h4 className="text-2xl font-bold text-white">{totalMembersCount}</h4>
+                  <h4 className="text-2xl font-bold text-slate-900">{totalMembersCount}</h4>
                   <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xs">ALL</div>
                </div>
             </div>
-            <div className="bg-surface/50 p-6 rounded-2xl border border-gray-800 hover:bg-surface transition group">
+            <div className="bg-surface/50 p-6 rounded-2xl border border-slate-200 hover:bg-surface transition group">
                <p className="text-xs text-gray-500 uppercase font-black group-hover:text-green-500 transition">Assigned to Projects</p>
                <div className="flex items-center justify-between mt-2">
-                  <h4 className="text-2xl font-bold text-white">{involvedMembersCount}</h4>
+                  <h4 className="text-2xl font-bold text-slate-900">{involvedMembersCount}</h4>
                   <div className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center text-green-500 text-xs">ACT</div>
                </div>
             </div>
-            <div className="bg-surface/50 p-6 rounded-2xl border border-gray-800 hover:bg-surface transition group">
+            <div className="bg-surface/50 p-6 rounded-2xl border border-slate-200 hover:bg-surface transition group">
                <p className="text-xs text-gray-500 uppercase font-black group-hover:text-yellow-500 transition">Awaiting Assignment</p>
                <div className="flex items-center justify-between mt-2">
-                  <h4 className="text-2xl font-bold text-white">{unassignedMembersCount}</h4>
+                  <h4 className="text-2xl font-bold text-slate-900">{unassignedMembersCount}</h4>
                   <div className="w-8 h-8 rounded-full bg-yellow-500/10 flex items-center justify-center text-yellow-500 text-xs">OFF</div>
                </div>
             </div>
@@ -210,8 +210,8 @@ export default function Dashboard({ role, email }) {
 
          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
             {/* 3D-styled Pie Chart */}
-            <div className="bg-surface p-8 rounded-3xl border border-gray-800 shadow-2xl relative">
-               <h3 className="text-lg font-bold text-white mb-8 flex items-center">
+            <div className="bg-surface p-8 rounded-3xl border border-slate-200 shadow-2xl relative">
+               <h3 className="text-lg font-bold text-slate-900 mb-8 flex items-center">
                   <PieIcon size={20} className="mr-2 text-primary" /> Status Weightage (3D Simulation)
                </h3>
                <div className="h-80">
@@ -256,8 +256,8 @@ export default function Dashboard({ role, email }) {
             </div>
 
             {/* Performance Bar Graph */}
-            <div className="bg-surface p-8 rounded-3xl border border-gray-800 shadow-2xl">
-               <h3 className="text-lg font-bold text-white mb-8 flex items-center">
+            <div className="bg-surface p-8 rounded-3xl border border-slate-200 shadow-2xl">
+               <h3 className="text-lg font-bold text-slate-900 mb-8 flex items-center">
                   <TrendingUp size={20} className="mr-2 text-primary" /> Delivery Performance (On-Time vs Late)
                </h3>
                <div className="h-80">
@@ -278,9 +278,9 @@ export default function Dashboard({ role, email }) {
 
          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
             {/* Priority Matrix Table */}
-            <div className="bg-surface rounded-3xl border border-gray-800 shadow-2xl overflow-x-auto">
-               <div className="p-6 border-b border-gray-800 bg-gray-900/10 flex justify-between items-center">
-                  <h3 className="text-lg font-bold text-white uppercase tracking-tighter">Priority Matrix (Shortest Due First)</h3>
+            <div className="bg-surface rounded-3xl border border-slate-200 shadow-2xl overflow-x-auto">
+               <div className="p-6 border-b border-slate-200 bg-gray-900/10 flex justify-between items-center">
+                  <h3 className="text-lg font-bold text-slate-900 uppercase tracking-tighter">Priority Matrix (Shortest Due First)</h3>
                   <Link to="/projects" className="text-xs text-primary hover:underline font-black uppercase">View All</Link>
                </div>
                <div className="overflow-x-auto">
@@ -296,7 +296,7 @@ export default function Dashboard({ role, email }) {
                      <tbody className="divide-y divide-gray-800">
                         {priorityMatrix.map(p => (
                            <tr key={p._id} onClick={() => handleProjectClick(p)} className="hover:bg-gray-800/10 transition group cursor-pointer">
-                              <td className="px-6 py-4 text-xs font-bold text-white group-hover:text-primary transition">{p.title}</td>
+                              <td className="px-6 py-4 text-xs font-bold text-slate-900 group-hover:text-primary transition">{p.title}</td>
                               <td className="px-6 py-4">
                                  <span className={`text-[10px] px-2 py-1 rounded-md font-black uppercase tracking-widest ${p.priority === 'High' ? 'bg-red-400/10 text-red-400' :
                                     p.priority === 'Medium' ? 'bg-yellow-400/10 text-yellow-400' : 'bg-blue-400/10 text-blue-400'
@@ -318,16 +318,16 @@ export default function Dashboard({ role, email }) {
             </div>
 
             {/* Due progress Track */}
-            <div className="bg-surface p-8 rounded-3xl border border-gray-800 shadow-2xl">
-               <h3 className="text-lg font-bold text-white mb-8">Due Progress Track (Upcoming Deadlines)</h3>
+            <div className="bg-surface p-8 rounded-3xl border border-slate-200 shadow-2xl">
+               <h3 className="text-lg font-bold text-slate-900 mb-8">Due Progress Track (Upcoming Deadlines)</h3>
                <div className="space-y-8">
                   {dueProgress.map((p, i) => (
-                     <div key={i} onClick={() => handleProjectClick(p)} className="space-y-2 cursor-pointer hover:bg-gray-800/30 p-4 -m-4 rounded-xl transition border border-transparent hover:border-gray-800">
+                     <div key={i} onClick={() => handleProjectClick(p)} className="space-y-2 cursor-pointer hover:bg-gray-800/30 p-4 -m-4 rounded-xl transition border border-transparent hover:border-slate-200">
                         <div className="flex justify-between items-center text-xs">
-                           <span className="font-bold text-white">{p.title}</span>
+                           <span className="font-bold text-slate-900">{p.title}</span>
                            <span className="text-primary font-black uppercase tracking-tighter">{p.progress}%</span>
                         </div>
-                        <div className="h-2 bg-gray-900 rounded-full overflow-hidden border border-gray-800">
+                        <div className="h-2 bg-gray-900 rounded-full overflow-hidden border border-slate-200">
                            <motion.div
                               initial={{ width: 0 }}
                               animate={{ width: `${p.progress}%` }}
@@ -343,8 +343,8 @@ export default function Dashboard({ role, email }) {
          </div>
 
          {/* Monthly Trends Graph Integration (Moved from last task) */}
-         <div className="bg-surface rounded-2xl p-8 border border-gray-800 shadow-xl">
-            <h3 className="text-lg font-semibold text-white mb-8 flex items-center">
+         <div className="bg-surface rounded-2xl p-8 border border-slate-200 shadow-xl">
+            <h3 className="text-lg font-semibold text-slate-900 mb-8 flex items-center">
                <TrendingUp size={18} className="mr-2 text-primary" /> Project Flow Analytics (Received vs Completed)
             </h3>
             <div className="h-72">
