@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Project = require('../models/Project');
 const User = require('../models/User');
+const Activity = require('../models/Activity');
 
-// Get all projects
 router.get('/', async (req, res) => {
     try {
         let projects;
@@ -18,7 +18,15 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Update project progress
+router.get('/activity', async (req, res) => {
+    try {
+        const activities = await Activity.find().sort({ createdAt: -1 }).limit(20);
+        return res.json(activities);
+    } catch (err) {
+        return res.status(500).json({ error: err.message });
+    }
+});
+
 router.patch('/:id/progress', async (req, res) => {
     try {
         const { progress } = req.body;
@@ -56,7 +64,6 @@ router.patch('/:id/progress', async (req, res) => {
     }
 });
 
-// Admin only: Create new project
 router.post('/', async (req, res) => {
     try {
         if (req.userRole !== 'Admin') return res.status(403).json({ error: 'Admin only' });
@@ -70,7 +77,7 @@ router.post('/', async (req, res) => {
         const newProject = new Project({
             title,
             description,
-            status: 'Pending',
+            status: progress === 0 ? 'Pending' : (progress < 100 ? 'In Progress' : 'Completed'),
             progress,
             dueDate,
             priority,
@@ -86,7 +93,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Admin only: Assign member to project
 router.post('/:id/assign', async (req, res) => {
     try {
         if (req.userRole !== 'Admin') return res.status(403).json({ error: 'Admin only' });
@@ -113,7 +119,6 @@ router.post('/:id/assign', async (req, res) => {
     }
 });
 
-// Add Action
 router.post('/:id/actions', async (req, res) => {
     try {
         const { phase, text, progress } = req.body;
@@ -154,7 +159,6 @@ router.post('/:id/actions', async (req, res) => {
     }
 });
 
-// Add Comment
 router.post('/:id/comments', async (req, res) => {
     try {
         const { text } = req.body;
@@ -178,7 +182,6 @@ router.post('/:id/comments', async (req, res) => {
     }
 });
 
-// Admin only: Cancel project
 router.patch('/:id/cancel', async (req, res) => {
     try {
         if (req.userRole !== 'Admin') return res.status(403).json({ error: 'Admin only' });
@@ -193,34 +196,57 @@ router.patch('/:id/cancel', async (req, res) => {
     }
 });
 
-// Admin only: Stats routes (simplified for MongoDB)
+router.get('/stats/monthly', async (req, res) => {
+    try {
+        if (req.userRole !== 'Admin') return res.status(403).json({ error: 'Admin only' });
+
+        const projects = await Project.find();
+        const now = new Date();
+        const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+        const stats = [];
+
+        for (let i = 1; i <= daysInMonth; i++) {
+            const dateStr = new Date(now.getFullYear(), now.getMonth(), i).toDateString();
+            
+            const received = projects.filter(p => new Date(p.createdAt).toDateString() === dateStr).length;
+            const completed = projects.filter(p => p.completedAt && new Date(p.completedAt).toDateString() === dateStr).length;
+            const cancelled = projects.filter(p => p.status === 'Cancelled' && new Date(p.updatedAt).toDateString() === dateStr).length;
+            const pending = projects.filter(p => p.status === 'Pending' && new Date(p.createdAt).toDateString() === dateStr).length;
+
+            stats.push({ day: i, received, completed, pending, cancelled });
+        }
+
+        return res.json(stats);
+    } catch (err) {
+        return res.status(500).json({ error: err.message });
+    }
+});
+
+router.get('/stats/performance', async (req, res) => {
+    try {
+        if (req.userRole !== 'Admin') return res.status(403).json({ error: 'Admin only' });
+
+        const projects = await Project.find({ status: 'Completed' });
+        const onTime = projects.filter(p => new Date(p.completedAt) <= new Date(p.dueDate)).length;
+        const late = projects.length - onTime;
+
+        return res.json({ onTime, late, total: projects.length });
+    } catch (err) {
+        return res.status(500).json({ error: err.message });
+    }
+});
+
 router.get('/stats/summary', async (req, res) => {
     try {
-        const stats = await Project.aggregate([
-            {
-                $group: {
-                    _id: '$status',
-                    count: { $sum: 1 }
-                }
-            }
-        ]);
+        const projects = await Project.find();
         
         const summary = {
-            Completed: 0,
-            'In Progress': 0,
-            Pending: 0,
-            Cancelled: 0,
-            Overdue: await Project.countDocuments({ 
-                status: { $ne: 'Completed' }, 
-                dueDate: { $lt: new Date() } 
-            })
+            Completed: projects.filter(p => p.status === 'Completed').length,
+            'In Progress': projects.filter(p => p.status === 'In Progress').length,
+            Pending: projects.filter(p => p.status === 'Pending').length,
+            Cancelled: projects.filter(p => p.status === 'Cancelled').length,
+            Overdue: projects.filter(p => p.status !== 'Completed' && new Date(p.dueDate) < new Date()).length
         };
-
-        stats.forEach(s => {
-            if (summary.hasOwnProperty(s._id)) {
-                summary[s._id] = s.count;
-            }
-        });
 
         return res.json(summary);
     } catch (err) {
@@ -228,7 +254,6 @@ router.get('/stats/summary', async (req, res) => {
     }
 });
 
-// Admin only: Unassign member
 router.delete('/:id/unassign', async (req, res) => {
     try {
         if (req.userRole !== 'Admin') return res.status(403).json({ error: 'Admin only' });
@@ -252,7 +277,6 @@ router.delete('/:id/unassign', async (req, res) => {
     }
 });
 
-// Admin only: Update due date
 router.patch('/:id/due-date', async (req, res) => {
     try {
         if (req.userRole !== 'Admin') return res.status(403).json({ error: 'Admin only' });

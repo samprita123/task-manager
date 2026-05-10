@@ -10,7 +10,28 @@ const authRouter = require('./routes/auth');
 const app = express();
 
 // Connect to Database
-connectDB();
+connectDB().then(async () => {
+    try {
+        const Project = require('./models/Project');
+        const projects = await Project.find().sort({ createdAt: -1 });
+        const seen = new Set();
+        for (const p of projects) {
+            if (seen.has(p.title)) {
+                await Project.findByIdAndDelete(p._id);
+                console.log(`Deleted duplicate: ${p.title}`);
+            } else {
+                seen.add(p.title);
+            }
+        }
+    } catch (err) {
+        console.error('Startup cleanup error:', err.message);
+    }
+});
+
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    next();
+});
 
 app.use(cors({
     origin: '*',

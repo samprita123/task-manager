@@ -3,7 +3,9 @@
 
 const isProduction = import.meta.env.PROD;
 
-export const API_BASE_URL = 'https://task-manager-kmh2.onrender.com/api';
+export const API_BASE_URL = isProduction 
+  ? 'https://task-manager-kmh2.onrender.com/api' 
+  : 'http://localhost:5000/api';
 export const ENDPOINTS = {
   AUTH: {
     LOGIN: `${API_BASE_URL}/auth/login`,

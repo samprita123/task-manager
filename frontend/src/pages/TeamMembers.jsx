@@ -87,10 +87,10 @@ export default function TeamMembers({ email }) {
                </h2>
                <p className="text-gray-400 mt-1">Manage all team members and their project access dynamically.</p>
             </div>
-            <div className="flex items-center space-x-2 bg-primary/10 px-4 py-2 rounded-xl border border-primary/20">
+            {/* <div className="flex items-center space-x-2 bg-primary/10 px-4 py-2 rounded-xl border border-primary/20">
                <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
                <span className="text-xs font-black text-primary uppercase tracking-widest">Dynamic Sync Active</span>
-            </div>
+            </div> */}
          </div>
 
          {/* Engagement Summary row */}
