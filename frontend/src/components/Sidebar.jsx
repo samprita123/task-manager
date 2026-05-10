@@ -22,7 +22,7 @@ export default function Sidebar({ role, onLogout, isOpen, onClose }) {
     <div className="w-64 bg-surface h-full flex flex-col border-r border-gray-800 shadow-xl overflow-y-auto shrink-0">
       <div className="p-6 flex items-center justify-between mb-8">
         <div className="flex items-center">
-          <img src="/src/assets/logo.png" alt="Logo" className="w-12 h-12 mr-3 object-contain drop-shadow-xl" />
+          <img src="/logo.png" alt="Logo" className="w-12 h-12 mr-3 object-contain drop-shadow-xl" />
           <h2 className="text-xl font-bold tracking-tight text-white leading-tight">
             Task<br />Manager
           </h2>
