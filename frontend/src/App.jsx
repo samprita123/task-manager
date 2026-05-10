@@ -175,9 +175,12 @@ function App() {
               </svg>
             </button>
 
-            <h1 className="text-lg lg:text-xl font-bold tracking-wide truncate text-white">
-              Team Task Manager
-            </h1>
+            <div className="flex items-center">
+              <img src="/src/assets/logo.png" alt="Logo" className="w-8 h-8 mr-2 object-contain" />
+              <h1 className="text-lg lg:text-xl font-bold tracking-wide truncate text-white">
+                Ethara AI
+              </h1>
+            </div>
           </div>
 
           <div className="flex items-center space-x-6">

@@ -23,11 +23,9 @@ export default function Sidebar({ role, onLogout, isOpen, onClose }) {
       {/* Header */}
       <div className="p-6 flex items-center justify-between mb-8">
         <div className="flex items-center">
-          <div className="w-10 h-10 bg-primary/20 text-primary rounded-lg flex items-center justify-center mr-3 shadow-[0_0_15px_rgba(59,130,246,0.3)]">
-            <LayoutDashboard size={24} />
-          </div>
+          <img src="/src/assets/logo.png" alt="Logo" className="w-12 h-12 mr-3 object-contain drop-shadow-xl" />
           <h2 className="text-xl font-bold tracking-tight text-white leading-tight">
-            Task<br />Manager
+            Ethara<br />AI
           </h2>
         </div>
         {/* Close button — only visible on mobile */}
