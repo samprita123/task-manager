@@ -153,25 +153,25 @@ export default function Dashboard({ role, email }) {
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-8 pb-12">
          <div>
             <h2 className="text-3xl font-bold text-white">Advanced Project Analytics</h2>
-            <p className="text-gray-300 mt-1">Real-time performance metrics and monthly reporting.</p>
+            <p className="text-gray-300 mt-1">Real-time performance metrics and project lifecycle analytics.</p>
          </div>
 
          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-surface p-6 rounded-2xl border border-gray-800 border-l-4 border-l-blue-500">
-               <p className="text-xs text-gray-400 uppercase font-black">Monthly Received</p>
-               <h4 className="text-3xl font-black text-white mt-1">{monthlyStats.reduce((sum, d) => sum + d.received, 0)}</h4>
+               <p className="text-xs text-gray-400 uppercase font-black">Total Projects</p>
+               <h4 className="text-3xl font-black text-white mt-1">{projects.length}</h4>
             </div>
             <div className="bg-surface p-6 rounded-2xl border border-gray-800 border-l-4 border-l-green-500">
-               <p className="text-xs text-gray-400 uppercase font-black">Monthly Completed</p>
-               <h4 className="text-3xl font-black text-white mt-1">{monthlyStats.reduce((sum, d) => sum + d.completed, 0)}</h4>
+               <p className="text-xs text-gray-400 uppercase font-black">Total Completed</p>
+               <h4 className="text-3xl font-black text-white mt-1">{projects.filter(p => p.progress >= 100).length}</h4>
             </div>
             <div className="bg-surface p-6 rounded-2xl border border-gray-800 border-l-4 border-l-orange-500">
-               <p className="text-xs text-gray-400 uppercase font-black">Monthly Pending</p>
-               <h4 className="text-3xl font-black text-white mt-1">{monthlyStats.reduce((sum, d) => sum + d.pending, 0)}</h4>
+               <p className="text-xs text-gray-400 uppercase font-black">Total Pending</p>
+               <h4 className="text-3xl font-black text-white mt-1">{projects.filter(p => p.progress === 0 && p.status !== 'Cancelled').length}</h4>
             </div>
             <div className="bg-surface p-6 rounded-2xl border border-gray-800 border-l-4 border-l-red-500">
-               <p className="text-xs text-gray-400 uppercase font-black">Monthly Cancelled</p>
-               <h4 className="text-3xl font-black text-white mt-1">{monthlyStats.reduce((sum, d) => sum + d.cancelled, 0)}</h4>
+               <p className="text-xs text-gray-400 uppercase font-black">Total In-Progress</p>
+               <h4 className="text-3xl font-black text-white mt-1">{projects.filter(p => p.progress > 0 && p.progress < 100 && p.status !== 'Cancelled').length}</h4>
             </div>
          </div>
 
