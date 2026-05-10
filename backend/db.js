@@ -50,7 +50,7 @@ const initialUsers = [
 
 const initialProjects = [
     {
-        id: 'p1',
+        _id: 'p1',
         title: 'Dashboard Redesign',
         description: 'Update the main dashboard UI to be project-centric with advanced visualizations.',
         assignedMembers: [
@@ -72,7 +72,7 @@ const initialProjects = [
         ]
     },
     {
-        id: 'p2',
+        _id: 'p2',
         title: 'Backend API Refactor',
         description: 'Implement secure RBAC authentication layers and optimize database queries.',
         assignedMembers: [

@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../api/config';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trash2, UserX, Briefcase, Mail, CheckCircle, ShieldAlert, Users, Info } from 'lucide-react';
@@ -40,7 +41,7 @@ export default function TeamMembers({ email }) {
    const removeMember = async (id) => {
       if (!window.confirm("Are you sure you want to remove this member?")) return;
       try {
-         const res = await fetch(`https://task-manager-kmh2.onrender.com/api/members/${id}`, {
+         const res = await fetch(`${API_BASE_URL}/members/${id}`, {
             method: 'DELETE',
             headers: { 'x-user-role': 'Admin', 'x-user-email': email }
          });
@@ -53,7 +54,7 @@ export default function TeamMembers({ email }) {
    const toggleStatus = async (id, currentStatus) => {
       const newStatus = currentStatus === 'Active' ? 'Inactive' : 'Active';
       try {
-         const res = await fetch(`https://task-manager-kmh2.onrender.com/api/members/${id}/status`, {
+         const res = await fetch(`${API_BASE_URL}/members/${id}/status`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json', 'x-user-role': 'Admin', 'x-user-email': email },
             body: JSON.stringify({ status: newStatus })

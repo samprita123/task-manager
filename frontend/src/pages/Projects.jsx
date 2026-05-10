@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../api/config';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
@@ -51,7 +52,7 @@ export default function Projects({ role, email }) {
 
     try {
 
-      const res = await fetch('https://task-manager-kmh2.onrender.com/api/projects', {
+      const res = await fetch(`${API_BASE_URL}/projects`, {
         headers: {
           'x-user-role': role,
           'x-user-email': email
@@ -118,7 +119,7 @@ export default function Projects({ role, email }) {
     try {
 
       const res = await fetch(
-        `https://task-manager-kmh2.onrender.com/api/projects/${id}/progress`,
+        `${API_BASE_URL}/projects/${id}/progress`,
         {
           method: 'PATCH',
 
@@ -140,7 +141,7 @@ export default function Projects({ role, email }) {
 
         setProjects(prev =>
           prev.map(p =>
-            p.id === id ? updated : p
+            (p._id === id || p.id === id) ? updated : p
           )
         );
 
@@ -436,7 +437,7 @@ export default function Projects({ role, email }) {
           {filteredProjects.map((project, idx) => (
 
             <motion.div
-              key={project?.id || idx}
+              key={project?._id || idx}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.05 }}
@@ -474,11 +475,11 @@ export default function Projects({ role, email }) {
               <div className="pt-4 border-t border-gray-800" onClick={(e) => e.stopPropagation()}>
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-xs font-bold text-gray-500 uppercase tracking-tighter">
-                    Quick Progress: {editingId === project.id ? tempProgress : project.progress || 0}%
+                    Quick Progress: {editingId === project._id ? tempProgress : project.progress || 0}%
                   </span>
-                  {(editingId === project.id && tempProgress !== project.progress) && (
+                  {(editingId === project._id && tempProgress !== project.progress) && (
                     <button
-                      onClick={() => handleProgressUpdate(project.id, tempProgress)}
+                      onClick={() => handleProgressUpdate(project._id, tempProgress)}
                       className="text-[10px] bg-primary text-white px-2 py-0.5 rounded font-bold uppercase"
                     >
                       Save
@@ -486,18 +487,18 @@ export default function Projects({ role, email }) {
                   )}
                 </div>
 
-                {(role === 'Admin' || project.assignedMembers?.some(m => m.email === email)) ? (
+                {project.assignedMembers?.some(m => m.email === email) ? (
                   <input
                     type="range"
                     min="0"
                     max="100"
-                    value={editingId === project.id ? tempProgress : project.progress || 0}
+                    value={editingId === project._id ? tempProgress : project.progress || 0}
                     onChange={(e) => {
-                      setEditingId(project.id);
+                      setEditingId(project._id);
                       setTempProgress(Number(e.target.value));
                     }}
-                    onMouseUp={() => handleProgressUpdate(project.id, tempProgress)}
-                    onTouchEnd={() => handleProgressUpdate(project.id, tempProgress)}
+                    onMouseUp={() => handleProgressUpdate(project._id, tempProgress)}
+                    onTouchEnd={() => handleProgressUpdate(project._id, tempProgress)}
                     className="w-full h-1.5 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-primary transition mt-1"
                   />
                 ) : (
@@ -559,7 +560,7 @@ export default function Projects({ role, email }) {
               {filteredProjects.map((project, idx) => (
 
                 <tr
-                  key={project?.id || idx}
+                  key={project?._id || idx}
                   className="hover:bg-gray-800/10"
                 >
 
@@ -605,29 +606,29 @@ export default function Projects({ role, email }) {
                       <div className="flex-1 max-w-[150px]">
                         <div className="flex justify-between items-center mb-1">
                           <span className="text-[10px] font-bold text-gray-500 uppercase">
-                            {editingId === project.id ? tempProgress : project.progress || 0}%
+                            {editingId === project._id ? tempProgress : project.progress || 0}%
                           </span>
-                          {(editingId === project.id && tempProgress !== project.progress) && (
+                          {(editingId === project._id && tempProgress !== project.progress) && (
                             <button
-                              onClick={() => handleProgressUpdate(project.id, tempProgress)}
+                              onClick={() => handleProgressUpdate(project._id, tempProgress)}
                               className="text-[9px] text-primary hover:underline font-bold uppercase"
                             >
                               Save
                             </button>
                           )}
                         </div>
-                        {(role === 'Admin' || project.assignedMembers?.some(m => m.email === email)) ? (
+                        {project.assignedMembers?.some(m => m.email === email) ? (
                           <input
                             type="range"
                             min="0"
                             max="100"
-                            value={editingId === project.id ? tempProgress : project.progress || 0}
+                            value={editingId === project._id ? tempProgress : project.progress || 0}
                             onChange={(e) => {
-                              setEditingId(project.id);
+                              setEditingId(project._id);
                               setTempProgress(Number(e.target.value));
                             }}
-                            onMouseUp={() => handleProgressUpdate(project.id, tempProgress)}
-                            onTouchEnd={() => handleProgressUpdate(project.id, tempProgress)}
+                            onMouseUp={() => handleProgressUpdate(project._id, tempProgress)}
+                            onTouchEnd={() => handleProgressUpdate(project._id, tempProgress)}
                             className="w-full h-1 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-primary transition"
                           />
                         ) : (
@@ -683,10 +684,9 @@ export default function Projects({ role, email }) {
           role={role}
           adminEmail={email}
           onUpdate={(updated) => {
-
             setProjects(prev =>
               prev.map(p =>
-                p.id === updated.id ? updated : p
+                (p._id === updated._id || p.id === updated._id || p._id === updated.id || p.id === updated.id) ? updated : p
               )
             );
 

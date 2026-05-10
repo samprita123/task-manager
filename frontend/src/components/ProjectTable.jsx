@@ -36,7 +36,7 @@ export default function ProjectTable({ projects, role, setProjects }) {
             </tr>
           ) : projects.map((project, idx) => (
             <motion.tr 
-              key={project.id}
+              key={project._id || project.id || idx}
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: idx * 0.05 }}

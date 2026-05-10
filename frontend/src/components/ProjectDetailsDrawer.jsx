@@ -62,6 +62,8 @@ export default function ProjectDetailsDrawer({
   const canUpdateProgress =
     role === 'Member' && isUserAssigned;
 
+  const projectId = project._id || project.id;
+
   useEffect(() => {
     if (project) {
       setActionProgress(project.progress || 0);
@@ -107,7 +109,7 @@ export default function ProjectDetailsDrawer({
 
     try {
       const res = await fetch(
-        `${API_BASE_URL}/projects/${project.id}/assign`,
+        `${API_BASE_URL}/projects/${projectId}/assign`,
         {
           method: 'POST',
           headers: {
@@ -142,7 +144,7 @@ export default function ProjectDetailsDrawer({
   const handleUnassign = async (memberEmail) => {
     try {
       const res = await fetch(
-        `${API_BASE_URL}/projects/${project.id}/unassign`,
+        `${API_BASE_URL}/projects/${projectId}/unassign`,
         {
           method: 'DELETE',
           headers: {
@@ -168,7 +170,7 @@ export default function ProjectDetailsDrawer({
       setIsSavingDate(true);
 
       const res = await fetch(
-        `${API_BASE_URL}/projects/${project.id}/due-date`,
+        `${API_BASE_URL}/projects/${projectId}/due-date`,
         {
           method: 'PATCH',
           headers: {
@@ -195,7 +197,7 @@ export default function ProjectDetailsDrawer({
   const handleAdminProgressUpdate = async (val) => {
     try {
       setIsUpdatingProgress(true);
-      const res = await fetch(`${API_BASE_URL}/projects/${project.id}/progress`, {
+      const res = await fetch(`${API_BASE_URL}/projects/${projectId}/progress`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -222,7 +224,7 @@ export default function ProjectDetailsDrawer({
 
     try {
       const res = await fetch(
-        `${API_BASE_URL}/projects/${project.id}/actions`,
+        `${API_BASE_URL}/projects/${projectId}/actions`,
         {
           method: 'POST',
           headers: {
@@ -257,7 +259,7 @@ export default function ProjectDetailsDrawer({
 
     try {
       const res = await fetch(
-        `${API_BASE_URL}/projects/${project.id}/comments`,
+        `${API_BASE_URL}/projects/${projectId}/comments`,
         {
           method: 'POST',
           headers: {
@@ -402,34 +404,19 @@ export default function ProjectDetailsDrawer({
                     <div>
                       <div className="flex justify-between mb-2">
                         <span className="text-xs text-gray-400">
-                          Edit Progress
+                          Current Progress
                         </span>
-
-                        <div className="flex items-center space-x-2">
-                          <span className="text-primary font-bold">
-                            {tempAdminProgress}%
-                          </span>
-                          {tempAdminProgress !== project.progress && (
-                            <button
-                              onClick={() => handleAdminProgressUpdate(tempAdminProgress)}
-                              disabled={isUpdatingProgress}
-                              className="text-[10px] bg-primary text-white px-2 py-0.5 rounded font-bold uppercase tracking-wider"
-                            >
-                              {isUpdatingProgress ? '...' : 'Save'}
-                            </button>
-                          )}
-                        </div>
+                        <span className="text-primary font-bold">
+                          {project.progress || 0}%
+                        </span>
                       </div>
 
-                      <input
-                        type="range"
-                        min="0" max="100"
-                        value={tempAdminProgress}
-                        onChange={(e) => setTempAdminProgress(Number(e.target.value))}
-                        onMouseUp={() => handleAdminProgressUpdate(tempAdminProgress)}
-                        onTouchEnd={() => handleAdminProgressUpdate(tempAdminProgress)}
-                        className="w-full h-2 bg-gray-800 rounded-lg appearance-none cursor-pointer accent-primary transition mt-1"
-                      />
+                      <div className="w-full bg-gray-900 rounded-full h-2 overflow-hidden border border-gray-800">
+                        <div
+                          className="bg-primary h-full rounded-full transition-all duration-500"
+                          style={{ width: `${project.progress || 0}%` }}
+                        />
+                      </div>
                     </div>
                   </section>
                 )}

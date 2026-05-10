@@ -19,19 +19,39 @@ router.get('/activity', (req, res) => {
     return res.json(activityFeed);
 });
 
-// Update project progress/status (accessible by assigned members or admin)
+// Update project progress (accessible by assigned members only, Admin view only)
 router.patch('/:id/progress', (req, res) => {
-    const { progress, status } = req.body;
-    const project = projects.find(p => p.id === req.params.id);
+    const { progress } = req.body;
+    const project = projects.find(p => (p._id === req.params.id || p.id === req.params.id));
 
     if (!project) return res.status(404).json({ error: 'Project not found' });
 
-    if (req.userRole !== 'Admin' && !project.assignedMembers.some(m => m.email === req.userEmail)) {
-        return res.status(403).json({ error: 'Access denied' });
+    // Block Admin from editing
+    if (req.userRole === 'Admin') {
+        return res.status(403).json({ error: 'Admins can only view progress, not edit it.' });
     }
 
-    if (progress !== undefined) project.progress = progress;
-    if (status !== undefined) project.status = status;
+    // Check if user is assigned to this project
+    const isAssigned = project.assignedMembers?.some(m => m.email === req.userEmail);
+    if (!isAssigned) {
+        return res.status(403).json({ error: 'Only assigned members can update progress.' });
+    }
+
+    if (progress !== undefined) {
+        const parsedProgress = Number(progress);
+        project.progress = parsedProgress;
+
+        // Auto-update status based on progress
+        if (parsedProgress === 0) {
+            project.status = 'Pending';
+        } else if (parsedProgress > 0 && parsedProgress < 100) {
+            project.status = 'In Progress';
+        } else if (parsedProgress >= 100) {
+            project.status = 'Completed';
+            project.completedAt = new Date().toISOString();
+        }
+        project.updatedAt = new Date().toISOString();
+    }
 
     saveData();
     return res.json(project);
@@ -48,7 +68,7 @@ router.post('/', (req, res) => {
     }
 
     const newProject = {
-        id: String(Date.now()),
+        _id: String(Date.now()),
         title,
         description,
         status: 'Pending',
@@ -71,7 +91,7 @@ router.post('/:id/assign', (req, res) => {
     if (req.userRole !== 'Admin') return res.status(403).json({ error: 'Admin only' });
 
     const { memberEmail, role = 'Member' } = req.body;
-    const project = projects.find(p => p.id === req.params.id);
+    const project = projects.find(p => (p._id === req.params.id || p.id === req.params.id));
     if (!project) return res.status(404).json({ error: 'Project not found' });
 
     if (!project.assignedMembers.some(m => m.email === memberEmail)) {
@@ -81,8 +101,8 @@ router.post('/:id/assign', (req, res) => {
         const user = users.find(u => u.email === memberEmail);
         if (user) {
             if (!user.assignedProjects) user.assignedProjects = [];
-            if (!user.assignedProjects.includes(project.id)) {
-                user.assignedProjects.push(project.id);
+            if (!user.assignedProjects.includes(project._id)) {
+                user.assignedProjects.push(project._id);
             }
         }
     }
@@ -90,43 +110,12 @@ router.post('/:id/assign', (req, res) => {
     return res.json(project);
 });
 
-// Member or Admin: Update project progress
-router.patch('/:id/progress', (req, res) => {
-    const { progress } = req.body;
-    const project = projects.find(p => p.id === req.params.id);
-
-    if (!project) return res.status(404).json({ error: 'Project not found' });
-
-    // Check if user is assigned to this project or is Admin
-    const isAssigned = project.assignedMembers.some(m => m.email === req.userEmail);
-
-    if (!isAssigned && req.userRole !== 'Admin') {
-        return res.status(403).json({ error: 'Only assigned members or Admin can update progress.' });
-    }
-
-    const parsedProgress = Number(progress);
-    project.progress = parsedProgress;
-
-    if (parsedProgress === 0) {
-        project.status = 'Pending';
-    } else if (parsedProgress > 0 && parsedProgress < 100) {
-        project.status = 'In Progress';
-    } else if (parsedProgress >= 100) {
-        project.status = 'Completed';
-        project.completedAt = new Date().toISOString();
-    }
-
-    project.updatedAt = new Date().toISOString();
-    saveData();
-
-    return res.json(project);
-});
 
 // jo member h wohi krenge
 router.post('/:id/actions', (req, res) => {
     const { phase, text, progress } = req.body;
 
-    const project = projects.find(p => p.id === req.params.id);
+    const project = projects.find(p => (p._id === req.params.id || p.id === req.params.id));
 
     if (!project) {
         return res.status(404).json({ error: 'Project not found' });
@@ -186,7 +175,7 @@ router.post('/:id/actions', (req, res) => {
 router.post('/:id/comments', (req, res) => {
     const { text } = req.body;
 
-    const project = projects.find(p => p.id === req.params.id);
+    const project = projects.find(p => (p._id === req.params.id || p.id === req.params.id));
 
     if (!project) {
         return res.status(404).json({ error: 'Project not found' });
@@ -219,7 +208,7 @@ router.post('/:id/comments', (req, res) => {
 // Admin only: Cancel project
 router.patch('/:id/cancel', (req, res) => {
     if (req.userRole !== 'Admin') return res.status(403).json({ error: 'Admin only' });
-    const project = projects.find(p => p.id === req.params.id);
+    const project = projects.find(p => (p._id === req.params.id || p.id === req.params.id));
     if (!project) return res.status(404).json({ error: 'Project not found' });
 
     project.status = 'Cancelled';
@@ -284,7 +273,7 @@ router.delete('/:id/unassign', (req, res) => {
     if (req.userRole !== 'Admin') return res.status(403).json({ error: 'Admin only' });
 
     const { memberEmail } = req.body;
-    const project = projects.find(p => p.id === req.params.id);
+    const project = projects.find(p => (p._id === req.params.id || p.id === req.params.id));
     if (!project) return res.status(404).json({ error: 'Project not found' });
 
     project.assignedMembers = project.assignedMembers.filter(m => m.email !== memberEmail);
@@ -292,7 +281,7 @@ router.delete('/:id/unassign', (req, res) => {
     // Also update the user's assignedProjects list
     const user = users.find(u => u.email === memberEmail);
     if (user && user.assignedProjects) {
-        user.assignedProjects = user.assignedProjects.filter(pid => pid !== project.id);
+        user.assignedProjects = user.assignedProjects.filter(pid => pid !== project._id);
     }
 
     saveData();
@@ -306,7 +295,7 @@ router.patch('/:id/due-date', (req, res) => {
 
     const { dueDate } = req.body;
 
-    const project = projects.find(p => p.id === req.params.id);
+    const project = projects.find(p => (p._id === req.params.id || p.id === req.params.id));
 
     if (!project) {
         return res.status(404).json({ error: 'Project not found' });

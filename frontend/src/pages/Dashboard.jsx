@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '../api/config';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { PieChart as PieIcon, TrendingUp } from 'lucide-react';
@@ -27,22 +28,22 @@ export default function Dashboard({ role, email }) {
       const fetchDashboard = async () => {
          try {
             const responses = await Promise.all([
-               fetch('https://task-manager-kmh2.onrender.com/api/projects', {
+               fetch(`${API_BASE_URL}/projects`, {
                   headers: { 'x-user-role': role, 'x-user-email': email }
                }),
-               role === 'Admin' ? fetch('https://task-manager-kmh2.onrender.com/api/members', {
+               role === 'Admin' ? fetch(`${API_BASE_URL}/members`, {
                   headers: { 'x-user-role': role, 'x-user-email': email }
                }) : Promise.resolve({ ok: true, json: () => [] }),
-               fetch('https://task-manager-kmh2.onrender.com/api/projects/activity', {
+               fetch(`${API_BASE_URL}/projects/activity`, {
                   headers: { 'x-user-role': role, 'x-user-email': email }
                }),
-               role === 'Admin' ? fetch('https://task-manager-kmh2.onrender.com/api/projects/stats/monthly', {
+               role === 'Admin' ? fetch(`${API_BASE_URL}/projects/stats/monthly`, {
                   headers: { 'x-user-role': role, 'x-user-email': email }
                }) : Promise.resolve({ ok: true, json: () => [] }),
-               role === 'Admin' ? fetch('https://task-manager-kmh2.onrender.com/api/projects/stats/performance', {
+               role === 'Admin' ? fetch(`${API_BASE_URL}/projects/stats/performance`, {
                   headers: { 'x-user-role': role, 'x-user-email': email }
                }) : Promise.resolve({ ok: true, json: () => [] }),
-               role === 'Admin' ? fetch('https://task-manager-kmh2.onrender.com/api/projects/stats/summary', {
+               role === 'Admin' ? fetch(`${API_BASE_URL}/projects/stats/summary`, {
                   headers: { 'x-user-role': role, 'x-user-email': email }
                }) : Promise.resolve({ ok: true, json: () => [] })
             ]);
@@ -295,7 +296,7 @@ export default function Dashboard({ role, email }) {
                      </thead>
                      <tbody className="divide-y divide-gray-800">
                         {priorityMatrix.map(p => (
-                           <tr key={p.id} onClick={() => handleProjectClick(p)} className="hover:bg-gray-800/10 transition group cursor-pointer">
+                           <tr key={p._id} onClick={() => handleProjectClick(p)} className="hover:bg-gray-800/10 transition group cursor-pointer">
                               <td className="px-6 py-4 text-xs font-bold text-white group-hover:text-primary transition">{p.title}</td>
                               <td className="px-6 py-4">
                                  <span className={`text-[10px] px-2 py-1 rounded-md font-black uppercase tracking-widest ${p.priority === 'High' ? 'bg-red-400/10 text-red-400' :
@@ -378,7 +379,12 @@ export default function Dashboard({ role, email }) {
             role={role}
             adminEmail={email}
             onUpdate={(updated) => {
-               setProjects(projects.map(p => p.id === updated.id ? updated : p));
+               setProjects(prev =>
+                  prev.map(p =>
+                     (p._id === updated._id || p.id === updated._id || p._id === updated.id || p.id === updated.id) ? updated : p
+                  )
+               );
+
                setSelectedProject(updated);
             }}
          />
