@@ -175,7 +175,7 @@ function App() {
               </svg>
             </button>
 
-            <h1 className="text-lg lg:text-xl font-bold tracking-wide truncate">
+            <h1 className="text-lg lg:text-xl font-bold tracking-wide truncate text-white">
               Team Task Manager
             </h1>
           </div>

@@ -74,7 +74,7 @@ export default function TeamMembers({ email }) {
    if (loading) return (
       <div className="h-screen flex flex-col items-center justify-center space-y-4">
          <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
-         <p className="text-gray-400 font-bold uppercase tracking-widest text-xs">Syncing Team Data...</p>
+         <p className="text-gray-300 font-bold uppercase tracking-widest text-xs">Syncing Team Data...</p>
       </div>
    );
 
@@ -85,7 +85,7 @@ export default function TeamMembers({ email }) {
                <h2 className="text-2xl font-bold text-white flex items-center">
                   <ShieldAlert className="mr-3 text-primary" /> Team Governance Center
                </h2>
-               <p className="text-gray-400 mt-1">Manage all team members and their project access dynamically.</p>
+               <p className="text-gray-300 mt-1">Manage all team members and their project access dynamically.</p>
             </div>
             {}
          </div>
@@ -95,21 +95,21 @@ export default function TeamMembers({ email }) {
             <div className="bg-surface/50 backdrop-blur-md p-6 rounded-3xl border border-gray-800 flex items-center space-x-5 hover:border-primary/30 transition-all group">
                <div className="p-4 bg-primary/10 rounded-2xl text-primary group-hover:scale-110 transition-transform"><Users size={24} /></div>
                <div>
-                  <p className="text-xs text-gray-500 uppercase font-black tracking-widest">Total Registry</p>
+                  <p className="text-xs text-gray-400 uppercase font-black tracking-widest">Total Registry</p>
                   <p className="text-3xl font-black text-white">{total}</p>
                </div>
             </div>
             <div className="bg-surface/50 backdrop-blur-md p-6 rounded-3xl border border-gray-800 flex items-center space-x-5 hover:border-success/30 transition-all group">
                <div className="p-4 bg-success/10 rounded-2xl text-success group-hover:scale-110 transition-transform"><Briefcase size={24} /></div>
                <div>
-                  <p className="text-xs text-gray-500 uppercase font-black tracking-widest">Involved in Projects</p>
+                  <p className="text-xs text-gray-400 uppercase font-black tracking-widest">Involved in Projects</p>
                   <p className="text-3xl font-black text-white">{involved}</p>
                </div>
             </div>
             <div className="bg-surface/50 backdrop-blur-md p-6 rounded-3xl border border-gray-800 flex items-center space-x-5 hover:border-warning/30 transition-all group">
                <div className="p-4 bg-warning/10 rounded-2xl text-warning group-hover:scale-110 transition-transform"><UserX size={24} /></div>
                <div>
-                  <p className="text-xs text-gray-500 uppercase font-black tracking-widest">Awaiting Assignment</p>
+                  <p className="text-xs text-gray-400 uppercase font-black tracking-widest">Awaiting Assignment</p>
                   <p className="text-3xl font-black text-white">{unassigned}</p>
                </div>
             </div>
@@ -145,17 +145,17 @@ export default function TeamMembers({ email }) {
 
                      <div className="space-y-4 mb-8">
                         <div className="flex justify-between items-center text-xs">
-                           <span className="text-gray-500 font-bold uppercase tracking-widest">Email</span>
-                           <span className="text-gray-300 truncate max-w-[150px]">{member.email}</span>
+                           <span className="text-gray-400 font-bold uppercase tracking-widest">Email</span>
+                           <span className="text-gray-200 truncate max-w-[150px]">{member.email}</span>
                         </div>
                         <div className="flex justify-between items-center text-xs">
-                           <span className="text-gray-500 font-bold uppercase tracking-widest">Active Projects</span>
+                           <span className="text-gray-400 font-bold uppercase tracking-widest">Active Projects</span>
                            <div className="flex items-center text-white font-black bg-gray-900 px-2 py-1 rounded-lg">
                               <Briefcase size={12} className="mr-1.5 text-primary" /> {member.assignedProjects?.length || 0}
                            </div>
                         </div>
                         <div className="flex justify-between items-center text-xs">
-                           <span className="text-gray-500 font-bold uppercase tracking-widest">Ready Status</span>
+                           <span className="text-gray-400 font-bold uppercase tracking-widest">Ready Status</span>
                            <span className={`px-2 py-1 rounded-lg text-[9px] font-black uppercase ${(member.assignedProjects?.length || 0) < 3 ? 'bg-success/10 text-success' : 'bg-warning/10 text-warning'
                               }`}>
                               {(member.assignedProjects?.length || 0) < 3 ? 'READY' : 'BUSY'}

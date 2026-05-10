@@ -92,7 +92,7 @@ export default function MemberDetailsDrawer({ member, isOpen, onClose, adminEmai
                   </div>
                   <h3 className="text-2xl font-bold text-white">{member.name}</h3>
                   <p className="text-primary font-medium text-sm uppercase tracking-widest mt-1">{member.position}</p>
-                  <div className="flex items-center justify-center space-x-2 mt-3 text-gray-400 text-sm">
+                  <div className="flex items-center justify-center space-x-2 mt-3 text-gray-300 text-sm">
                     <Mail size={14} />
                     <span>{member.email}</span>
                   </div>
@@ -101,7 +101,7 @@ export default function MemberDetailsDrawer({ member, isOpen, onClose, adminEmai
                 {/* Status Cards */}
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-gray-900/40 p-4 rounded-2xl border border-gray-800">
-                    <p className="text-[10px] text-gray-500 uppercase font-black mb-1">Availability Status</p>
+                    <p className="text-[10px] text-gray-400 uppercase font-black mb-1">Availability Status</p>
                     <div className="flex items-center space-x-2">
                       <div className={`w-2 h-2 rounded-full animate-pulse ${isReadyForMore ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
                       <span className={`text-sm font-bold ${isReadyForMore ? 'text-green-400' : 'text-yellow-400'}`}>
@@ -110,20 +110,20 @@ export default function MemberDetailsDrawer({ member, isOpen, onClose, adminEmai
                     </div>
                   </div>
                   <div className="bg-gray-900/40 p-4 rounded-2xl border border-gray-800">
-                    <p className="text-[10px] text-gray-500 uppercase font-black mb-1">Emp ID</p>
+                    <p className="text-[10px] text-gray-400 uppercase font-black mb-1">Emp ID</p>
                     <p className="text-sm font-mono text-white">{member.empId}</p>
                   </div>
                 </div>
 
                 {/* Contribution Metrics */}
                 <section>
-                  <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4 flex items-center">
+                  <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-4 flex items-center">
                     <BarChart size={16} className="mr-2 text-primary" /> Performance metrics
                   </h3>
                   <div className="space-y-4">
                     <div className="bg-gray-900/20 p-4 rounded-2xl border border-gray-800">
                       <div className="flex justify-between items-center mb-2">
-                        <span className="text-xs text-gray-400 uppercase font-bold">Average Progress Contribution</span>
+                        <span className="text-xs text-gray-300 uppercase font-bold">Average Progress Contribution</span>
                         <span className="text-primary font-black">{Math.round(totalProgress)}%</span>
                       </div>
                       <div className="w-full bg-gray-800 rounded-full h-2">
@@ -137,13 +137,13 @@ export default function MemberDetailsDrawer({ member, isOpen, onClose, adminEmai
                     
                     <div className="grid grid-cols-2 gap-4">
                       <div className="bg-green-500/5 p-4 rounded-2xl border border-green-500/10">
-                        <p className="text-[10px] text-green-500/60 uppercase font-black">Success Rate</p>
+                        <p className="text-[10px] text-green-500/80 uppercase font-black">Success Rate</p>
                         <p className="text-xl font-bold text-green-400">
                           {member.completedProjects > 0 ? '94%' : 'N/A'}
                         </p>
                       </div>
                       <div className="bg-blue-500/5 p-4 rounded-2xl border border-blue-500/10">
-                        <p className="text-[10px] text-blue-500/60 uppercase font-black">Completed</p>
+                        <p className="text-[10px] text-blue-500/80 uppercase font-black">Completed</p>
                         <p className="text-xl font-bold text-blue-400">{member.completedProjects}</p>
                       </div>
                     </div>
@@ -153,7 +153,7 @@ export default function MemberDetailsDrawer({ member, isOpen, onClose, adminEmai
                 {/* Active Projects List */}
                 <section>
                   <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider flex items-center">
+                    <h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider flex items-center">
                       <Briefcase size={16} className="mr-2 text-primary" /> Active Assignments
                     </h3>
                     <span className="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded-full font-bold">
@@ -169,7 +169,7 @@ export default function MemberDetailsDrawer({ member, isOpen, onClose, adminEmai
                         <div key={i} className="bg-gray-900/40 p-4 rounded-2xl border border-gray-800 hover:border-primary/30 transition group">
                           <div className="flex justify-between items-start mb-2">
                             <h4 className="text-sm font-bold text-white group-hover:text-primary transition">{p.title}</h4>
-                            <span className="text-[10px] text-gray-500">{new Date(p.dueDate).toLocaleDateString()}</span>
+                            <span className="text-[10px] text-gray-400">{new Date(p.dueDate).toLocaleDateString()}</span>
                           </div>
                           <div className="flex items-center space-x-3">
                             <div className="flex-1 bg-gray-800 rounded-full h-1.5 overflow-hidden">
@@ -193,7 +193,7 @@ export default function MemberDetailsDrawer({ member, isOpen, onClose, adminEmai
                     <CheckCircle size={14} className="mr-2" /> 
                     {isReadyForMore ? 'Available for Assignment' : 'Workload Advisory'}
                   </h4>
-                  <p className="text-[10px] text-gray-400 leading-relaxed">
+                  <p className="text-[10px] text-gray-300 leading-relaxed">
                     {isReadyForMore 
                       ? 'This member has high bandwidth and is ready to take on new initiatives and complex projects.' 
                       : 'This member is currently handling multiple high-priority tasks. It is recommended to consult before assigning more work.'}

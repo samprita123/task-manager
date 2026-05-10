@@ -218,7 +218,7 @@ export default function Projects({ role, email }) {
             Project Governance
           </h2>
 
-          <p className="text-gray-400 mt-1">
+          <p className="text-gray-300 mt-1">
             Monitor projects and team execution.
           </p>
 
@@ -255,7 +255,7 @@ export default function Projects({ role, email }) {
               onClick={() => setViewMode('grid')}
               className={`p-1.5 rounded-lg transition ${viewMode === 'grid'
                 ? 'bg-primary text-white'
-                : 'text-gray-500'
+                : 'text-gray-400'
                 }`}
             >
               <LayoutGrid size={18} />
@@ -265,7 +265,7 @@ export default function Projects({ role, email }) {
               onClick={() => setViewMode('list')}
               className={`p-1.5 rounded-lg transition ${viewMode === 'list'
                 ? 'bg-primary text-white'
-                : 'text-gray-500'
+                : 'text-gray-400'
                 }`}
             >
               <List size={18} />
@@ -320,7 +320,7 @@ export default function Projects({ role, email }) {
                       }}
                     />
 
-                    <span className="text-gray-400 text-sm">
+                    <span className="text-gray-300 text-sm">
                       {d.name}
                     </span>
 
@@ -465,7 +465,7 @@ export default function Projects({ role, email }) {
 
               </h3>
 
-              <p className="text-gray-400 text-sm mb-6 line-clamp-2">
+              <p className="text-gray-300 text-sm mb-6 line-clamp-2">
 
                 {project?.description || 'No description'}
 
@@ -473,7 +473,7 @@ export default function Projects({ role, email }) {
 
               <div className="pt-4 border-t border-gray-800" onClick={(e) => e.stopPropagation()}>
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-xs font-bold text-gray-500 uppercase tracking-tighter">
+                  <span className="text-xs font-bold text-gray-400 uppercase tracking-tighter">
                     Quick Progress: {editingId === project._id ? tempProgress : project.progress || 0}%
                   </span>
                   {(editingId === project._id && tempProgress !== project.progress) && (
@@ -522,7 +522,7 @@ export default function Projects({ role, email }) {
 
           <table className="w-full text-left">
 
-            <thead className="bg-gray-900/30 text-xs text-gray-500 uppercase">
+            <thead className="bg-gray-900/30 text-xs text-gray-400 uppercase">
 
               <tr>
 
@@ -576,7 +576,7 @@ export default function Projects({ role, email }) {
 
                       </p>
 
-                      <p className="text-gray-500 text-sm">
+                      <p className="text-gray-400 text-sm">
 
                         {project?.description || 'No description'}
 
@@ -592,7 +592,7 @@ export default function Projects({ role, email }) {
 
                   </td>
 
-                  <td className="px-6 py-5 text-gray-400">
+                  <td className="px-6 py-5 text-gray-300">
 
                     {project?.dueDate
                       ? new Date(project.dueDate).toLocaleDateString()
@@ -604,7 +604,7 @@ export default function Projects({ role, email }) {
                     <div className="flex items-center gap-3">
                       <div className="flex-1 max-w-[150px]">
                         <div className="flex justify-between items-center mb-1">
-                          <span className="text-[10px] font-bold text-gray-500 uppercase">
+                          <span className="text-[10px] font-bold text-gray-400 uppercase">
                             {editingId === project._id ? tempProgress : project.progress || 0}%
                           </span>
                           {(editingId === project._id && tempProgress !== project.progress) && (

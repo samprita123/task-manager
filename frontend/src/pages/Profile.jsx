@@ -55,7 +55,7 @@ export default function Profile({ email, role }) {
                         {profile.role}
                      </span>
                   </div>
-                  <p className="text-gray-400 flex items-center justify-center md:justify-start mb-6">
+                  <p className="text-gray-300 flex items-center justify-center md:justify-start mb-6">
                      <Mail size={16} className="mr-2 text-primary" /> {profile.email}
                   </p>
 
@@ -80,10 +80,10 @@ export default function Profile({ email, role }) {
                   <div className="p-3 bg-green-400/10 rounded-xl text-green-400">
                      <CheckCircle size={24} />
                   </div>
-                  <span className="text-gray-500 text-[10px] font-black uppercase tracking-widest px-2 py-0.5 border border-gray-800 rounded">Total</span>
+                  <span className="text-gray-400 text-[10px] font-black uppercase tracking-widest px-2 py-0.5 border border-gray-800 rounded">Total</span>
                </div>
                <h3 className="text-4xl font-black text-white mb-1">{profile.completedProjects}</h3>
-               <p className="text-gray-400 text-sm font-medium">Projects Completed</p>
+               <p className="text-gray-300 text-sm font-medium">Projects Completed</p>
             </div>
 
             <div className="bg-surface p-6 rounded-2xl border border-gray-800 shadow-xl group">
@@ -91,10 +91,10 @@ export default function Profile({ email, role }) {
                   <div className="p-3 bg-blue-400/10 rounded-xl text-blue-400">
                      <TrendingUp size={24} />
                   </div>
-                  <span className="text-gray-500 text-[10px] font-black uppercase tracking-widest px-2 py-0.5 border border-gray-800 rounded">Live</span>
+                  <span className="text-gray-400 text-[10px] font-black uppercase tracking-widest px-2 py-0.5 border border-gray-800 rounded">Live</span>
                </div>
                <h3 className="text-4xl font-black text-white mb-1">{profile.assignedProjects.length}</h3>
-               <p className="text-gray-400 text-sm font-medium">Active Assignments</p>
+               <p className="text-gray-300 text-sm font-medium">Active Assignments</p>
             </div>
 
             <div className="bg-surface p-6 rounded-2xl border border-gray-800 shadow-xl group">
@@ -102,10 +102,10 @@ export default function Profile({ email, role }) {
                   <div className="p-3 bg-orange-400/10 rounded-xl text-orange-400">
                      <Award size={24} />
                   </div>
-                  <span className="text-gray-500 text-[10px] font-black uppercase tracking-widest px-2 py-0.5 border border-gray-800 rounded">Score</span>
+                  <span className="text-gray-400 text-[10px] font-black uppercase tracking-widest px-2 py-0.5 border border-gray-800 rounded">Score</span>
                </div>
                <h3 className="text-4xl font-black text-white mb-1">{efficiency}%</h3>
-               <p className="text-gray-400 text-sm font-medium">Efficiency Index</p>
+               <p className="text-gray-300 text-sm font-medium">Efficiency Index</p>
             </div>
          </div>
 
@@ -115,13 +115,13 @@ export default function Profile({ email, role }) {
                <h3 className="font-bold text-white flex items-center uppercase tracking-tighter">
                   <Award size={18} className="mr-2 text-primary" /> Performance Record
                </h3>
-               <span className="text-xs text-gray-500">Updated hourly</span>
+               <span className="text-xs text-gray-400">Updated hourly</span>
             </div>
             <div className="p-8">
                <div className="space-y-6">
                   <div>
                      <div className="flex justify-between items-center mb-2">
-                        <span className="text-sm font-medium text-gray-400">Task Velocity</span>
+                        <span className="text-sm font-medium text-gray-300">Task Velocity</span>
                         <span className="text-white font-bold">{efficiency}%</span>
                      </div>
                      <div className="h-3 bg-gray-900 rounded-full overflow-hidden">
@@ -135,7 +135,7 @@ export default function Profile({ email, role }) {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
                      <div className="space-y-4">
-                        <h4 className="text-xs font-black text-gray-500 uppercase tracking-widest">Key Skills</h4>
+                        <h4 className="text-xs font-black text-gray-400 uppercase tracking-widest">Key Skills</h4>
                         <div className="flex flex-wrap gap-2">
                            {['Architecture', 'Problem Solving', 'React', 'Teamwork'].map(skill => (
                               <span key={skill} className="px-3 py-1 bg-gray-900 text-gray-300 text-[10px] font-bold rounded-lg border border-gray-800">{skill}</span>
@@ -143,8 +143,8 @@ export default function Profile({ email, role }) {
                         </div>
                      </div>
                      <div className="space-y-4">
-                        <h4 className="text-xs font-black text-gray-500 uppercase tracking-widest">Last Activity</h4>
-                        <p className="text-sm text-gray-400 bg-gray-900 p-3 rounded-xl border border-gray-800 inline-block">
+                        <h4 className="text-xs font-black text-gray-400 uppercase tracking-widest">Last Activity</h4>
+                        <p className="text-sm text-gray-300 bg-gray-900 p-3 rounded-xl border border-gray-800 inline-block">
                            {new Date(profile.lastActivity).toLocaleString()}
                         </p>
                      </div>

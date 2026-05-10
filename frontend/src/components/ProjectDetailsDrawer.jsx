@@ -336,7 +336,7 @@ export default function ProjectDetailsDrawer({
                 {/* SUMMARY */}
                 <section>
                   <div className="flex justify-between items-center mb-3">
-                    <h3 className="text-sm uppercase text-gray-500">
+                    <h3 className="text-sm uppercase text-gray-400">
                       Summary
                     </h3>
                     <div className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${
@@ -354,7 +354,7 @@ export default function ProjectDetailsDrawer({
                       {project.title}
                     </h4>
 
-                    <p className="text-gray-400">
+                    <p className="text-gray-300">
                       {project.description}
                     </p>
                   </div>
@@ -370,7 +370,7 @@ export default function ProjectDetailsDrawer({
 
                     {/* Due Date */}
                     <div className="mb-6">
-                      <label className="block text-xs text-gray-400 mb-2">
+                      <label className="block text-xs text-gray-300 mb-2">
                         Edit Due Date
                       </label>
 
@@ -403,7 +403,7 @@ export default function ProjectDetailsDrawer({
                     {/* Progress */}
                     <div>
                       <div className="flex justify-between mb-2">
-                        <span className="text-xs text-gray-400">
+                        <span className="text-xs text-gray-300">
                           Current Progress
                         </span>
                         <span className="text-primary font-bold">
@@ -433,7 +433,7 @@ export default function ProjectDetailsDrawer({
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-[10px] uppercase font-bold text-gray-500 mb-2 ml-1">Phase</label>
+                          <label className="block text-[10px] uppercase font-bold text-gray-400 mb-2 ml-1">Phase</label>
                           <select
                             value={actionPhase}
                             onChange={(e) =>
@@ -450,7 +450,7 @@ export default function ProjectDetailsDrawer({
                         </div>
 
                         <div>
-                          <label className="block text-[10px] uppercase font-bold text-gray-500 mb-2 ml-1">Update Progress: {actionProgress}%</label>
+                          <label className="block text-[10px] uppercase font-bold text-gray-400 mb-2 ml-1">Update Progress: {actionProgress}%</label>
                           <input 
                             type="range" 
                             min="0" max="100" 
@@ -488,7 +488,7 @@ export default function ProjectDetailsDrawer({
                 <div className="grid grid-cols-2 gap-4">
 
                   <div className="bg-gray-900/40 p-4 rounded-xl border border-gray-800">
-                    <div className="flex items-center text-gray-500 mb-2">
+                    <div className="flex items-center text-gray-400 mb-2">
                       <Calendar size={15} className="mr-2" />
                       <span className="text-xs uppercase">
                         Due Date
@@ -505,7 +505,7 @@ export default function ProjectDetailsDrawer({
                   </div>
 
                   <div className="bg-gray-900/40 p-4 rounded-xl border border-gray-800">
-                    <div className="flex items-center text-gray-500 mb-2">
+                    <div className="flex items-center text-gray-400 mb-2">
                       <BarChart3 size={15} className="mr-2" />
                       <span className="text-xs uppercase">
                         Priority
@@ -520,7 +520,7 @@ export default function ProjectDetailsDrawer({
 
                 {/* COMMENTS */}
                 <section>
-                  <h3 className="text-sm uppercase text-gray-500 mb-4">
+                  <h3 className="text-sm uppercase text-gray-400 mb-4">
                     Comments
                   </h3>
 
@@ -535,14 +535,14 @@ export default function ProjectDetailsDrawer({
                             {c.user}
                           </span>
 
-                          <span className="text-gray-500 text-[10px]">
+                          <span className="text-gray-400 text-[10px]">
                             {new Date(
                               c.time
                             ).toLocaleString()}
                           </span>
                         </div>
 
-                        <p className="text-sm text-gray-300">
+                        <p className="text-sm text-gray-200">
                           {c.text}
                         </p>
                       </div>
@@ -644,7 +644,7 @@ export default function ProjectDetailsDrawer({
 
                 {/* MEMBERS */}
                 <section>
-                  <h3 className="text-sm uppercase text-gray-500 mb-4">
+                  <h3 className="text-sm uppercase text-gray-400 mb-4">
                     Project Team
                   </h3>
 
@@ -679,7 +679,7 @@ export default function ProjectDetailsDrawer({
                     ))}
 
                     {assignedMembers.length === 0 && (
-                      <div className="text-center text-gray-500 py-4">
+                      <div className="text-center text-gray-400 py-4">
                         No members assigned.
                       </div>
                     )}
