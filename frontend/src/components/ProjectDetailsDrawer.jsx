@@ -107,7 +107,7 @@ export default function ProjectDetailsDrawer({
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/projects/${project.id}/assign`,
+        `${API_BASE_URL}/projects/${project.id}/assign`,
         {
           method: 'POST',
           headers: {
@@ -142,7 +142,7 @@ export default function ProjectDetailsDrawer({
   const handleUnassign = async (memberEmail) => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/projects/${project.id}/unassign`,
+        `${API_BASE_URL}/projects/${project.id}/unassign`,
         {
           method: 'DELETE',
           headers: {
@@ -168,7 +168,7 @@ export default function ProjectDetailsDrawer({
       setIsSavingDate(true);
 
       const res = await fetch(
-        `http://localhost:5000/api/projects/${project.id}/due-date`,
+        `${API_BASE_URL}/projects/${project.id}/due-date`,
         {
           method: 'PATCH',
           headers: {
@@ -195,7 +195,7 @@ export default function ProjectDetailsDrawer({
   const handleAdminProgressUpdate = async (val) => {
     try {
       setIsUpdatingProgress(true);
-      const res = await fetch(`http://localhost:5000/api/projects/${project.id}/progress`, {
+      const res = await fetch(`${API_BASE_URL}/projects/${project.id}/progress`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -222,7 +222,7 @@ export default function ProjectDetailsDrawer({
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/projects/${project.id}/actions`,
+        `${API_BASE_URL}/projects/${project.id}/actions`,
         {
           method: 'POST',
           headers: {
@@ -257,7 +257,7 @@ export default function ProjectDetailsDrawer({
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/projects/${project.id}/comments`,
+        `${API_BASE_URL}/projects/${project.id}/comments`,
         {
           method: 'POST',
           headers: {
