@@ -95,7 +95,7 @@ function App() {
   if (loading) {
 
     return (
-      <div className="h-screen flex items-center justify-center bg-background text-white text-xl">
+      <div className="h-screen flex items-center justify-center bg-background text-slate-800 text-xl">
         Loading...
       </div>
     );
@@ -150,7 +150,7 @@ function App() {
   // MAIN APP
   return (
 
-    <div className="flex h-screen bg-background overflow-hidden text-gray-100 font-sans">
+    <div className="flex h-screen bg-background overflow-hidden text-slate-800 font-sans">
 
       <Sidebar
         role={userRole}
@@ -162,7 +162,7 @@ function App() {
       <div className="flex-1 flex flex-col h-screen overflow-hidden w-full">
 
         {/* HEADER */}
-        <header className="h-16 flex items-center justify-between px-4 lg:px-8 bg-surface border-b border-gray-800 shrink-0">
+        <header className="h-16 flex items-center justify-between px-4 lg:px-8 bg-surface border-b border-slate-200 shrink-0">
 
           <div className="flex items-center">
             {/* Hamburger for mobile */}
@@ -176,7 +176,7 @@ function App() {
             </button>
 
             <h1 className="text-lg lg:text-xl font-bold tracking-wide truncate">
-              Team Task Manager
+              Team <span className="text-primary">Task Manager</span>
             </h1>
           </div>
 

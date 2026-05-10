@@ -7,13 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#0B0F19',
-        surface: '#111827',
-        surfaceHover: '#1F2937',
-        primary: '#3B82F6',
-        success: '#10B981',
-        warning: '#F59E0B',
-        danger: '#EF4444',
+        background: '#f8fafc',
+        surface: '#ffffff',
+        surfaceHover: '#f1f5f9',
+        primary: '#0d9488',
+        success: '#059669',
+        warning: '#d97706',
+        danger: '#dc2626',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
