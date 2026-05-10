@@ -11,7 +11,6 @@ import {
    ArrowRight
 } from 'lucide-react';
 
-
 export default function Login({
    setAuth,
    setRole,
@@ -35,8 +34,6 @@ export default function Login({
    const [loading, setLoading] =
       useState(false);
 
-
-   // LOGIN
    const handleLogin = async (e) => {
 
       e.preventDefault();
@@ -70,19 +67,14 @@ export default function Login({
 
          const data = await res.json();
 
-
-         // SUCCESS
          if (res.ok) {
 
-            // SAVE TO APP STATE
             setRole(data.user.role);
 
             setEmail(data.user.email);
 
             setAuth(true);
 
-
-            // SAVE TO LOCAL STORAGE
             localStorage.setItem(
                'isAuth',
                'true'
@@ -103,12 +95,9 @@ export default function Login({
                JSON.stringify(data.user)
             );
 
-
-            // REDIRECT
             navigate('/dashboard');
          }
 
-         // ERROR
          else {
 
             setError(
@@ -133,8 +122,6 @@ export default function Login({
       }
    };
 
-
-   // FORGOT PASSWORD
    const handleForgotInfo = () => {
 
       alert(
@@ -142,12 +129,11 @@ export default function Login({
       );
    };
 
-
    return (
 
       <div className="min-h-screen flex bg-background">
 
-         {/* LEFT SIDE */}
+         {}
          <div className="hidden lg:flex lg:w-1/2 bg-surfaceHover relative items-center justify-center overflow-hidden">
 
             <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-500/20 z-0"></div>
@@ -173,8 +159,7 @@ export default function Login({
 
          </div>
 
-
-         {/* RIGHT SIDE */}
+         {}
          <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
 
             <motion.div
@@ -204,13 +189,12 @@ export default function Login({
 
                </div>
 
-
                <form
                   onSubmit={handleLogin}
                   className="space-y-6"
                >
 
-                  {/* ROLE */}
+                  {}
                   <div>
 
                      <label className="block text-sm font-medium text-gray-400 mb-4">
@@ -219,7 +203,7 @@ export default function Login({
 
                      <div className="grid grid-cols-2 gap-4">
 
-                        {/* ADMIN */}
+                        {}
                         <button
 
                            type="button"
@@ -254,8 +238,7 @@ export default function Login({
 
                         </button>
 
-
-                        {/* MEMBER */}
+                        {}
                         <button
 
                            type="button"
@@ -294,8 +277,7 @@ export default function Login({
 
                   </div>
 
-
-                  {/* ERROR */}
+                  {}
                   {
                      error && (
 
@@ -307,8 +289,7 @@ export default function Login({
                      )
                   }
 
-
-                  {/* EMAIL */}
+                  {}
                   <div>
 
                      <label className="block text-sm font-medium text-gray-400 mb-2">
@@ -334,8 +315,7 @@ export default function Login({
 
                   </div>
 
-
-                  {/* PASSWORD */}
+                  {}
                   <div>
 
                      <div className="flex justify-between items-center mb-2">
@@ -372,8 +352,7 @@ export default function Login({
 
                   </div>
 
-
-                  {/* SUBMIT */}
+                  {}
                   <button
 
                      type="submit"
@@ -399,8 +378,7 @@ export default function Login({
 
                </form>
 
-
-               {/* SIGNUP */}
+               {}
                <p className="text-center text-gray-400 mt-8 text-sm">
 
                   Don't have an account?

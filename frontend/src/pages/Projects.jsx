@@ -43,7 +43,6 @@ export default function Projects({ role, email }) {
   useEffect(() => {
     fetchProjects();
 
-    // Auto-refresh every 10 seconds for dynamic updates
     const interval = setInterval(fetchProjects, 10000);
     return () => clearInterval(interval);
   }, [role, email]);
@@ -209,7 +208,7 @@ export default function Projects({ role, email }) {
 
     <div className="space-y-8">
 
-      {/* HEADER */}
+      {}
 
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
 
@@ -227,7 +226,7 @@ export default function Projects({ role, email }) {
 
         <div className="flex items-center gap-3">
 
-          {/* SEARCH */}
+          {}
 
           <div className="relative">
 
@@ -248,7 +247,7 @@ export default function Projects({ role, email }) {
 
           </div>
 
-          {/* VIEW TOGGLE */}
+          {}
 
           <div className="flex bg-surface border border-gray-800 p-1 rounded-xl">
 
@@ -274,7 +273,7 @@ export default function Projects({ role, email }) {
 
           </div>
 
-          {/* ADD PROJECT */}
+          {}
 
           {role === 'Admin' && (
 
@@ -291,7 +290,7 @@ export default function Projects({ role, email }) {
         </div>
       </div>
 
-      {/* STATS */}
+      {}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
@@ -372,7 +371,7 @@ export default function Projects({ role, email }) {
           </div>
         </div>
 
-        {/* HEALTH */}
+        {}
 
         <div className="bg-primary/5 p-6 rounded-3xl border border-primary/20 flex flex-col justify-center">
 
@@ -428,7 +427,7 @@ export default function Projects({ role, email }) {
         </div>
       </div>
 
-      {/* GRID */}
+      {}
 
       {viewMode === 'grid' ? (
 
@@ -673,7 +672,7 @@ export default function Projects({ role, email }) {
         </div>
       )}
 
-      {/* DRAWER */}
+      {}
 
       {selectedProject && (
 
@@ -696,7 +695,7 @@ export default function Projects({ role, email }) {
 
       )}
 
-      {/* ADD PROJECT */}
+      {}
 
       <AddProjectModal
         isOpen={isAddModalOpen}

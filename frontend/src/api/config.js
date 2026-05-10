@@ -1,6 +1,3 @@
-// API Configuration
-// Switch between local and production by changing the base URL or using env variables
-
 const isProduction = import.meta.env.PROD;
 
 export const API_BASE_URL = isProduction 

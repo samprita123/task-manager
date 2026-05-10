@@ -9,7 +9,6 @@ const authRouter = require('./routes/auth');
 
 const app = express();
 
-// Connect to Database
 connectDB().then(async () => {
     try {
         const Project = require('./models/Project');
@@ -18,13 +17,12 @@ connectDB().then(async () => {
         for (const p of projects) {
             if (seen.has(p.title)) {
                 await Project.findByIdAndDelete(p._id);
-                console.log(`Deleted duplicate: ${p.title}`);
             } else {
                 seen.add(p.title);
             }
         }
     } catch (err) {
-        console.error('Startup cleanup error:', err.message);
+        console.error('Initial data check failed:', err.message);
     }
 });
 
@@ -42,7 +40,6 @@ app.use(express.json());
 
 app.use('/api/auth', authRouter);
 
-// Mock Role-Based Access Control Middleware for protected routes
 app.use('/api', (req, res, next) => {
     const role = req.headers['x-user-role'];
     const email = req.headers['x-user-email'];

@@ -11,7 +11,6 @@ import {
    ArrowRight
 } from 'lucide-react';
 
-
 export default function Signup({
    setAuth,
    setRole,
@@ -38,15 +37,12 @@ export default function Signup({
    const [loading, setLoading] =
       useState(false);
 
-
-   // SIGNUP FUNCTION
    const handleSignup = async (e) => {
 
       e.preventDefault();
 
       setError('');
 
-      // VALIDATION
       if (
          !name.trim() ||
          !emailInput.trim() ||
@@ -101,19 +97,14 @@ export default function Signup({
 
          const data = await res.json();
 
-
-         // SUCCESS
          if (res.ok) {
 
-            // SAVE STATE
             setRole(data.user.role);
 
             setEmail(data.user.email);
 
             setAuth(true);
 
-
-            // SAVE LOCAL STORAGE
             localStorage.setItem(
                'isAuth',
                'true'
@@ -134,13 +125,10 @@ export default function Signup({
                JSON.stringify(data.user)
             );
 
-
-            // REDIRECT
             navigate('/dashboard');
 
          }
 
-         // ERROR
          else {
 
             setError(
@@ -165,12 +153,11 @@ export default function Signup({
       }
    };
 
-
    return (
 
       <div className="min-h-screen flex bg-background">
 
-         {/* LEFT FORM */}
+         {}
          <div className="w-full lg:w-1/2 flex items-center justify-center p-8 order-2 lg:order-1">
 
             <motion.div
@@ -200,13 +187,12 @@ export default function Signup({
 
                </div>
 
-
                <form
                   onSubmit={handleSignup}
                   className="space-y-6"
                >
 
-                  {/* ROLE */}
+                  {}
                   <div>
 
                      <label className="block text-sm font-medium text-gray-400 mb-4">
@@ -215,7 +201,7 @@ export default function Signup({
 
                      <div className="grid grid-cols-2 gap-4">
 
-                        {/* ADMIN */}
+                        {}
                         <button
 
                            type="button"
@@ -250,8 +236,7 @@ export default function Signup({
 
                         </button>
 
-
-                        {/* MEMBER */}
+                        {}
                         <button
 
                            type="button"
@@ -290,8 +275,7 @@ export default function Signup({
 
                   </div>
 
-
-                  {/* ERROR */}
+                  {}
                   {
                      error && (
 
@@ -303,8 +287,7 @@ export default function Signup({
                      )
                   }
 
-
-                  {/* NAME */}
+                  {}
                   <div>
 
                      <label className="block text-sm font-medium text-gray-400 mb-2">
@@ -330,8 +313,7 @@ export default function Signup({
 
                   </div>
 
-
-                  {/* EMAIL */}
+                  {}
                   <div>
 
                      <label className="block text-sm font-medium text-gray-400 mb-2">
@@ -357,8 +339,7 @@ export default function Signup({
 
                   </div>
 
-
-                  {/* PASSWORD */}
+                  {}
                   <div>
 
                      <label className="block text-sm font-medium text-gray-400 mb-2">
@@ -384,8 +365,7 @@ export default function Signup({
 
                   </div>
 
-
-                  {/* BUTTON */}
+                  {}
                   <button
 
                      type="submit"
@@ -411,8 +391,7 @@ export default function Signup({
 
                </form>
 
-
-               {/* LOGIN */}
+               {}
                <p className="text-center text-gray-400 mt-8 text-sm">
 
                   Already have an account?
@@ -436,8 +415,7 @@ export default function Signup({
 
          </div>
 
-
-         {/* RIGHT SIDE */}
+         {}
          <div className="hidden lg:flex lg:w-1/2 bg-surfaceHover relative items-center justify-center overflow-hidden order-1 lg:order-2">
 
             <div className="absolute inset-0 bg-gradient-to-tl from-primary/20 to-indigo-500/20 z-0"></div>

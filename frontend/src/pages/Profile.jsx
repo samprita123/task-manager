@@ -28,12 +28,11 @@ export default function Profile({ email, role }) {
    if (loading) return <div className="p-8 text-center text-gray-400">Loading Profile...</div>;
    if (!profile) return <div className="p-8 text-center text-red-400">Profile Not Found</div>;
 
-   // Efficiency calculation (mock logic)
    const efficiency = profile.completedProjects > 5 ? 95 : 75 + (profile.completedProjects * 4);
 
    return (
       <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-         {/* Profile Header */}
+         {}
          <div className="bg-surface rounded-3xl p-8 border border-gray-800 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 p-8 opacity-5">
                <Award size={160} />
@@ -74,7 +73,7 @@ export default function Profile({ email, role }) {
             </div>
          </div>
 
-         {/* Stats Grid */}
+         {}
          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-surface p-6 rounded-2xl border border-gray-800 shadow-xl group">
                <div className="flex items-center justify-between mb-4">
@@ -110,7 +109,7 @@ export default function Profile({ email, role }) {
             </div>
          </div>
 
-         {/* Activity / Performance Track */}
+         {}
          <div className="bg-surface rounded-3xl border border-gray-800 overflow-hidden shadow-2xl">
             <div className="p-6 border-b border-gray-800 flex items-center justify-between bg-gray-900/10">
                <h3 className="font-bold text-white flex items-center uppercase tracking-tighter">

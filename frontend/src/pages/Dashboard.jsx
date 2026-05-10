@@ -15,7 +15,6 @@ export default function Dashboard({ role, email }) {
    const [statusSummary, setStatusSummary] = useState({});
    const [loading, setLoading] = useState(true);
 
-   // Drawer States
    const [selectedProject, setSelectedProject] = useState(null);
    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -65,7 +64,6 @@ export default function Dashboard({ role, email }) {
 
       fetchDashboard();
 
-      // Auto-refresh every 10 seconds for dynamic updates
       const interval = setInterval(fetchDashboard, 10000);
       return () => clearInterval(interval);
    }, [role, email]);
@@ -74,7 +72,6 @@ export default function Dashboard({ role, email }) {
       ? projects
       : projects.filter(p => p.assignedMembers?.some(m => m.email === email));
 
-   // 3D-ish Pie Chart Data derived dynamically from real-time projects
    const pieData = [
       { name: 'Completed', value: projects.filter(p => p.progress >= 100).length, color: '#10B981' },
       { name: 'In Progress', value: projects.filter(p => p.progress > 0 && p.progress < 100 && p.status !== 'Cancelled').length, color: '#3B82F6' },
@@ -82,7 +79,6 @@ export default function Dashboard({ role, email }) {
       { name: 'Cancelled', value: projects.filter(p => p.status === 'Cancelled').length, color: '#EF4444' }
    ].filter(d => d.value > 0);
 
-   // Delivery performance: Chances of on-time vs late per project
    const barData = projects.filter(p => p.status !== 'Cancelled').slice(0, 7).map(p => {
       const start = new Date(p.createdAt).getTime();
       const due = new Date(p.dueDate).getTime();
@@ -114,7 +110,6 @@ export default function Dashboard({ role, email }) {
       };
    });
 
-   // Dynamic Flow Analytics
    const generateFlowAnalytics = () => {
       const stats = [];
       const now = new Date();
@@ -133,7 +128,6 @@ export default function Dashboard({ role, email }) {
    };
    const liveMonthlyStats = generateFlowAnalytics();
 
-   // Priority Matrix: Sorted by Priority and due time
    const priorityOrder = { High: 0, Medium: 1, Low: 2 };
    const priorityMatrix = [...projects]
       .sort((a, b) => {
@@ -144,7 +138,6 @@ export default function Dashboard({ role, email }) {
       })
       .slice(0, 5);
 
-   // Due Progress Tracker: Top 5 by due date
    const dueProgress = [...projects]
       .filter(p => p.status !== 'Completed' && p.status !== 'Cancelled')
       .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))
@@ -164,7 +157,7 @@ export default function Dashboard({ role, email }) {
             <p className="text-gray-400 mt-1">Real-time performance metrics and monthly reporting.</p>
          </div>
 
-         {/* Monthly Trends Table-like Widget (Recieved, Completed, Pending, Cancelled) */}
+         {}
          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-surface p-6 rounded-2xl border border-gray-800 border-l-4 border-l-blue-500">
                <p className="text-xs text-gray-500 uppercase font-black">Monthly Received</p>
@@ -184,7 +177,7 @@ export default function Dashboard({ role, email }) {
             </div>
          </div>
 
-         {/* Member Involvement Metrics (NEW) */}
+         {}
          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-surface/50 p-6 rounded-2xl border border-gray-800 hover:bg-surface transition group">
                <p className="text-xs text-gray-500 uppercase font-black group-hover:text-primary transition">Total Registry Members</p>
@@ -210,7 +203,7 @@ export default function Dashboard({ role, email }) {
          </div>
 
          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-            {/* 3D-styled Pie Chart */}
+            {}
             <div className="bg-surface p-8 rounded-3xl border border-gray-800 shadow-2xl relative">
                <h3 className="text-lg font-bold text-white mb-8 flex items-center">
                   <PieIcon size={20} className="mr-2 text-primary" /> Status Weightage (3D Simulation)
@@ -245,7 +238,7 @@ export default function Dashboard({ role, email }) {
                      </PieChart>
                   </ResponsiveContainer>
                </div>
-               {/* Legend overlay */}
+               {}
                <div className="absolute right-8 bottom-8 text-right space-y-2">
                   {pieData.map((d, i) => (
                      <div key={i} className="flex items-center justify-end space-x-2">
@@ -256,7 +249,7 @@ export default function Dashboard({ role, email }) {
                </div>
             </div>
 
-            {/* Performance Bar Graph */}
+            {}
             <div className="bg-surface p-8 rounded-3xl border border-gray-800 shadow-2xl">
                <h3 className="text-lg font-bold text-white mb-8 flex items-center">
                   <TrendingUp size={20} className="mr-2 text-primary" /> Delivery Performance (On-Time vs Late)
@@ -278,7 +271,7 @@ export default function Dashboard({ role, email }) {
          </div>
 
          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-            {/* Priority Matrix Table */}
+            {}
             <div className="bg-surface rounded-3xl border border-gray-800 shadow-2xl overflow-x-auto">
                <div className="p-6 border-b border-gray-800 bg-gray-900/10 flex justify-between items-center">
                   <h3 className="text-lg font-bold text-white uppercase tracking-tighter">Priority Matrix (Shortest Due First)</h3>
@@ -318,7 +311,7 @@ export default function Dashboard({ role, email }) {
                </div>
             </div>
 
-            {/* Due progress Track */}
+            {}
             <div className="bg-surface p-8 rounded-3xl border border-gray-800 shadow-2xl">
                <h3 className="text-lg font-bold text-white mb-8">Due Progress Track (Upcoming Deadlines)</h3>
                <div className="space-y-8">
@@ -343,7 +336,7 @@ export default function Dashboard({ role, email }) {
             </div>
          </div>
 
-         {/* Monthly Trends Graph Integration (Moved from last task) */}
+         {}
          <div className="bg-surface rounded-2xl p-8 border border-gray-800 shadow-xl">
             <h3 className="text-lg font-semibold text-white mb-8 flex items-center">
                <TrendingUp size={18} className="mr-2 text-primary" /> Project Flow Analytics (Received vs Completed)
@@ -371,7 +364,7 @@ export default function Dashboard({ role, email }) {
             </div>
          </div>
 
-         {/* Drawer Integration */}
+         {}
          <ProjectDetailsDrawer
             project={selectedProject}
             isOpen={isDrawerOpen}
