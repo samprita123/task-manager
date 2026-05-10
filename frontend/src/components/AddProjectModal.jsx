@@ -19,9 +19,9 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, admin
     setError('');
 
     try {
-      const res = await fetch('http://localhost:5000/api/projects', {
+      const res = await fetch('https://task-manager-kmh2.onrender.com/api/projects', {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'x-user-role': 'Admin',
           'x-user-email': adminEmail
@@ -76,7 +76,7 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, admin
 
             <form onSubmit={handleSubmit} className="space-y-6">
               {error && <div className="text-red-400 text-sm p-3 bg-red-400/10 rounded-xl border border-red-400/20">{error}</div>}
-              
+
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-400 mb-2">Project Title</label>
@@ -89,7 +89,7 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, admin
                     placeholder="e.g. Modern UI Redesign"
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-400 mb-2">Description</label>
                   <textarea
