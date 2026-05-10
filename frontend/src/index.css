@@ -3,53 +3,40 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --primary: #0d9488; /* Teal 600 */
-    --accent: #db2777;  /* Pink 600 */
-    --surface: rgba(255, 255, 255, 0.7);
-    --background: #f8fafc; /* Light Slate */
+  body {
+    @apply bg-background text-gray-100 antialiased font-sans;
   }
 
-  body {
-    @apply bg-slate-50 text-slate-800 antialiased font-sans;
-    background-image: 
-      radial-gradient(at 0% 0%, rgba(94, 234, 212, 0.2) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(244, 114, 182, 0.15) 0px, transparent 50%),
-      radial-gradient(at 50% 100%, rgba(186, 230, 253, 0.3) 0px, transparent 50%);
-    background-attachment: fixed;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-bold tracking-tight text-slate-900;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-outfit;
   }
 }
 
 @layer utilities {
   .glass {
-    @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
-  }
-  
-  .glass-card {
-    @apply bg-white/80 backdrop-blur-lg border border-white/50 shadow-xl;
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
   }
 
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-teal-600 via-blue-600 to-pink-600;
+  .glass-hover {
+    @apply hover:bg-white/10 transition-all duration-300;
   }
 
-  .smoothing-card {
-    @apply bg-white/60 hover:bg-white/90 transition-all duration-500 border border-slate-200/50 shadow-sm hover:shadow-md;
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
   }
-}
 
-::-webkit-scrollbar {
-  width: 5px;
-}
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
 
-::-webkit-scrollbar-track {
-  @apply bg-transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 rounded-full hover:bg-teal-500/50 transition-colors;
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-800 rounded-full hover:bg-gray-700 transition-colors;
+  }
 }

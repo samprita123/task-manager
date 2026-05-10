@@ -19,14 +19,14 @@ export default function Sidebar({ role, onLogout, isOpen, onClose }) {
   const links = role === 'Admin' ? adminLinks : memberLinks;
 
   const SidebarContent = () => (
-    <div className="w-64 bg-surface h-full flex flex-col border-r border-slate-200 shadow-xl overflow-y-auto shrink-0">
+    <div className="w-64 bg-surface h-full flex flex-col border-r border-gray-800 shadow-xl overflow-y-auto shrink-0">
       {/* Header */}
       <div className="p-6 flex items-center justify-between mb-8">
         <div className="flex items-center">
           <div className="w-10 h-10 bg-primary/20 text-primary rounded-lg flex items-center justify-center mr-3 shadow-[0_0_15px_rgba(59,130,246,0.3)]">
             <LayoutDashboard size={24} />
           </div>
-          <h2 className="text-xl font-bold tracking-tight text-slate-800 leading-tight">
+          <h2 className="text-xl font-bold tracking-tight text-white leading-tight">
             Task<br />Manager
           </h2>
         </div>
@@ -49,7 +49,7 @@ export default function Sidebar({ role, onLogout, isOpen, onClose }) {
             onClick={onClose}
             className={({ isActive }) =>
               `relative flex items-center py-3 px-4 rounded-xl transition-all duration-300
-              ${isActive ? 'text-primary' : 'text-slate-500 hover:text-primary hover:bg-slate-50'}`
+              ${isActive ? 'text-white' : 'text-gray-400 hover:text-white hover:bg-surfaceHover'}`
             }
           >
             {({ isActive }) => (
@@ -72,7 +72,7 @@ export default function Sidebar({ role, onLogout, isOpen, onClose }) {
       </nav>
 
       {/* Logout */}
-      <div className="p-4 border-t border-slate-200">
+      <div className="p-4 border-t border-gray-800">
         <button
           onClick={() => { onLogout(); onClose && onClose(); }}
           className="flex items-center w-full py-3 px-4 text-gray-400 hover:text-red-400 hover:bg-red-400/10 rounded-xl transition-all"
