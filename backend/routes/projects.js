@@ -74,6 +74,15 @@ router.post('/:id/assign', (req, res) => {
 
     if (!project.assignedMembers.some(m => m.email === memberEmail)) {
         project.assignedMembers.push({ email: memberEmail, role });
+
+        // Also update the user's assignedProjects list
+        const user = users.find(u => u.email === memberEmail);
+        if (user) {
+            if (!user.assignedProjects) user.assignedProjects = [];
+            if (!user.assignedProjects.includes(project.id)) {
+                user.assignedProjects.push(project.id);
+            }
+        }
     }
     saveData();
     return res.json(project);
@@ -83,7 +92,7 @@ router.post('/:id/assign', (req, res) => {
 router.patch('/:id/progress', (req, res) => {
     const { progress } = req.body;
     const project = projects.find(p => p.id === req.params.id);
-    
+
     if (!project) return res.status(404).json({ error: 'Project not found' });
 
     // Check if user is assigned to this project or is Admin
@@ -95,7 +104,7 @@ router.patch('/:id/progress', (req, res) => {
 
     const parsedProgress = Number(progress);
     project.progress = parsedProgress;
-    
+
     if (parsedProgress === 0) {
         project.status = 'Pending';
     } else if (parsedProgress > 0 && parsedProgress < 100) {
@@ -104,10 +113,10 @@ router.patch('/:id/progress', (req, res) => {
         project.status = 'Completed';
         project.completedAt = new Date().toISOString();
     }
-    
+
     project.updatedAt = new Date().toISOString();
     saveData();
-    
+
     return res.json(project);
 });
 
@@ -277,6 +286,12 @@ router.delete('/:id/unassign', (req, res) => {
     if (!project) return res.status(404).json({ error: 'Project not found' });
 
     project.assignedMembers = project.assignedMembers.filter(m => m.email !== memberEmail);
+
+    // Also update the user's assignedProjects list
+    const user = users.find(u => u.email === memberEmail);
+    if (user && user.assignedProjects) {
+        user.assignedProjects = user.assignedProjects.filter(pid => pid !== project.id);
+    }
 
     saveData();
     return res.json(project);

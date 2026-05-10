@@ -18,7 +18,7 @@
       }
     ],
     "status": "In Progress",
-    "progress": 45,
+    "progress": 41,
     "dueDate": "2026-05-14T11:23:29.896Z",
     "priority": "High",
     "comments": [
@@ -119,7 +119,7 @@
     "title": "customer support ticket portal",
     "description": "here customer can rise a issue and customer support mange the  request efficiently",
     "status": "Pending",
-    "progress": 0,
+    "progress": 15,
     "dueDate": "2026-05-29",
     "priority": "Low",
     "createdAt": "2026-05-09T12:07:25.357Z",
@@ -135,6 +135,10 @@
       {
         "email": "aryan@ethara.ai",
         "role": "developer"
+      },
+      {
+        "email": "Jassi@gmail.com",
+        "role": "Member"
       }
     ]
   },

@@ -14,6 +14,10 @@ export default {
         success: '#10B981',
         warning: '#F59E0B',
         danger: '#EF4444',
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        outfit: ['Outfit', 'sans-serif'],
       }
     },
   },

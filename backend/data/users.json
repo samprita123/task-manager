@@ -3,16 +3,14 @@
     "id": "admin-1",
     "name": "Samprita patra",
     "email": "sam123@gmail.com",
+    "password": "admin123",
     "role": "Admin",
     "status": "Active",
     "empId": "ADM-001",
     "position": "Chief Operations Officer",
-    "assignedProjects": [
-      "p1",
-      "p2"
-    ],
+    "assignedProjects": [],
     "completedProjects": 12,
-    "lastActivity": "2026-05-09T11:23:29.894Z"
+    "lastActivity": "2026-05-10T07:09:48.351Z"
   },
   {
     "id": "mem-1",
@@ -26,7 +24,8 @@
       "p1"
     ],
     "completedProjects": 4,
-    "lastActivity": "2026-05-09T11:23:29.896Z"
+    "lastActivity": "2026-05-09T11:23:29.896Z",
+    "password": "member123"
   },
   {
     "id": "mem-2",
@@ -40,7 +39,8 @@
       "p1"
     ],
     "completedProjects": 3,
-    "lastActivity": "2026-05-09T11:23:29.896Z"
+    "lastActivity": "2026-05-09T11:23:29.896Z",
+    "password": "member123"
   },
   {
     "id": "mem-3",
@@ -54,7 +54,8 @@
       "p2"
     ],
     "completedProjects": 5,
-    "lastActivity": "2026-05-09T11:23:29.896Z"
+    "lastActivity": "2026-05-09T11:23:29.896Z",
+    "password": "member123"
   },
   {
     "id": "mem-4",
@@ -64,9 +65,12 @@
     "status": "Active",
     "empId": "EMP-104",
     "position": "Product Manager",
-    "assignedProjects": [],
+    "assignedProjects": [
+      "1778328445357"
+    ],
     "completedProjects": 2,
-    "lastActivity": "2026-05-09T11:23:29.896Z"
+    "lastActivity": "2026-05-09T11:23:29.896Z",
+    "password": "member123"
   },
   {
     "id": "mem-5",
@@ -76,9 +80,12 @@
     "status": "Active",
     "empId": "EMP-105",
     "position": "DevOps Lead",
-    "assignedProjects": [],
+    "assignedProjects": [
+      "1778328505130"
+    ],
     "completedProjects": 6,
-    "lastActivity": "2026-05-09T11:23:29.896Z"
+    "lastActivity": "2026-05-09T11:23:29.896Z",
+    "password": "member123"
   },
   {
     "id": "mem-6",
@@ -88,9 +95,12 @@
     "status": "Active",
     "empId": "EMP-106",
     "position": "Frontend Dev",
-    "assignedProjects": [],
+    "assignedProjects": [
+      "1778328380643"
+    ],
     "completedProjects": 1,
-    "lastActivity": "2026-05-09T11:23:29.896Z"
+    "lastActivity": "2026-05-09T11:23:29.896Z",
+    "password": "member123"
   },
   {
     "id": "mem-7",
@@ -102,7 +112,8 @@
     "position": "QA Automator",
     "assignedProjects": [],
     "completedProjects": 3,
-    "lastActivity": "2026-05-09T11:23:29.896Z"
+    "lastActivity": "2026-05-09T11:23:29.896Z",
+    "password": "member123"
   },
   {
     "id": "mem-8",
@@ -112,9 +123,12 @@
     "status": "Active",
     "empId": "EMP-108",
     "position": "Graphic Designer",
-    "assignedProjects": [],
+    "assignedProjects": [
+      "1778328505130"
+    ],
     "completedProjects": 2,
-    "lastActivity": "2026-05-09T11:23:29.896Z"
+    "lastActivity": "2026-05-09T11:23:29.896Z",
+    "password": "member123"
   },
   {
     "id": "mem-9",
@@ -126,7 +140,8 @@
     "position": "Data Scientist",
     "assignedProjects": [],
     "completedProjects": 0,
-    "lastActivity": "2026-05-09T11:23:29.896Z"
+    "lastActivity": "2026-05-09T11:23:29.896Z",
+    "password": "member123"
   },
   {
     "id": "mem-10",
@@ -136,9 +151,12 @@
     "status": "Active",
     "empId": "EMP-110",
     "position": "HR Manager",
-    "assignedProjects": [],
+    "assignedProjects": [
+      "1778328445357"
+    ],
     "completedProjects": 4,
-    "lastActivity": "2026-05-09T11:23:29.896Z"
+    "lastActivity": "2026-05-09T11:23:29.896Z",
+    "password": "member123"
   },
   {
     "id": "mem-11",
@@ -148,9 +166,12 @@
     "status": "Active",
     "empId": "EMP-111",
     "position": "System Admin",
-    "assignedProjects": [],
+    "assignedProjects": [
+      "1778327696410"
+    ],
     "completedProjects": 5,
-    "lastActivity": "2026-05-09T11:23:29.896Z"
+    "lastActivity": "2026-05-09T11:23:29.896Z",
+    "password": "member123"
   },
   {
     "id": "mem-12",
@@ -160,9 +181,12 @@
     "status": "Active",
     "empId": "EMP-112",
     "position": "Mobile Dev",
-    "assignedProjects": [],
+    "assignedProjects": [
+      "1778328613559"
+    ],
     "completedProjects": 2,
-    "lastActivity": "2026-05-09T11:23:29.896Z"
+    "lastActivity": "2026-05-09T11:23:29.896Z",
+    "password": "member123"
   },
   {
     "id": "mem-13",
@@ -172,9 +196,12 @@
     "status": "Active",
     "empId": "EMP-113",
     "position": "Security Engineer",
-    "assignedProjects": [],
+    "assignedProjects": [
+      "1778328380643"
+    ],
     "completedProjects": 3,
-    "lastActivity": "2026-05-09T11:23:29.896Z"
+    "lastActivity": "2026-05-09T11:23:29.896Z",
+    "password": "member123"
   },
   {
     "id": "mem-14",
@@ -184,9 +211,13 @@
     "status": "Active",
     "empId": "EMP-114",
     "position": "Business Analyst",
-    "assignedProjects": [],
+    "assignedProjects": [
+      "p2",
+      "1778327696410"
+    ],
     "completedProjects": 1,
-    "lastActivity": "2026-05-09T11:23:29.896Z"
+    "lastActivity": "2026-05-09T11:23:29.896Z",
+    "password": "member123"
   },
   {
     "id": "mem-15",
@@ -198,7 +229,8 @@
     "position": "Cloud Architect",
     "assignedProjects": [],
     "completedProjects": 4,
-    "lastActivity": "2026-05-09T11:23:29.896Z"
+    "lastActivity": "2026-05-09T11:23:29.896Z",
+    "password": "member123"
   },
   {
     "id": "mem-16",
@@ -208,9 +240,12 @@
     "status": "Active",
     "empId": "EMP-116",
     "position": "Fullstack Dev",
-    "assignedProjects": [],
+    "assignedProjects": [
+      "1778328613559"
+    ],
     "completedProjects": 3,
-    "lastActivity": "2026-05-09T11:23:29.896Z"
+    "lastActivity": "2026-05-09T11:23:29.896Z",
+    "password": "member123"
   },
   {
     "id": "mem-17",
@@ -220,9 +255,12 @@
     "status": "Active",
     "empId": "EMP-117",
     "position": "Content Strategist",
-    "assignedProjects": [],
+    "assignedProjects": [
+      "1778328445357"
+    ],
     "completedProjects": 2,
-    "lastActivity": "2026-05-09T11:23:29.896Z"
+    "lastActivity": "2026-05-09T11:23:29.896Z",
+    "password": "member123"
   },
   {
     "id": "mem-18",
@@ -232,9 +270,12 @@
     "status": "Active",
     "empId": "EMP-118",
     "position": "Digital Marketer",
-    "assignedProjects": [],
+    "assignedProjects": [
+      "p1"
+    ],
     "completedProjects": 1,
-    "lastActivity": "2026-05-09T11:23:29.896Z"
+    "lastActivity": "2026-05-09T11:23:29.896Z",
+    "password": "member123"
   },
   {
     "id": "mem-19",
@@ -244,9 +285,12 @@
     "status": "Active",
     "empId": "EMP-119",
     "position": "Video Editor",
-    "assignedProjects": [],
+    "assignedProjects": [
+      "1778328613559"
+    ],
     "completedProjects": 2,
-    "lastActivity": "2026-05-09T11:23:29.896Z"
+    "lastActivity": "2026-05-09T11:23:29.896Z",
+    "password": "member123"
   },
   {
     "id": "mem-20",
@@ -256,20 +300,41 @@
     "status": "Active",
     "empId": "EMP-120",
     "position": "Accountant",
-    "assignedProjects": [],
+    "assignedProjects": [
+      "1778327696410"
+    ],
     "completedProjects": 3,
-    "lastActivity": "2026-05-09T11:23:29.896Z"
+    "lastActivity": "2026-05-09T11:23:29.896Z",
+    "password": "member123"
   },
   {
     "id": "1778337745903",
     "name": "smith",
     "email": "smith@gmail.com",
+    "password": "smith123",
     "role": "Member",
     "status": "Active",
     "empId": "EMP-9720",
     "position": "Software Engineer",
-    "assignedProjects": [],
+    "assignedProjects": [
+      "1778328380643"
+    ],
     "completedProjects": 0,
     "lastActivity": "2026-05-09T14:42:25.903Z"
+  },
+  {
+    "id": "mem-1778395272745",
+    "name": "Jassi singh",
+    "email": "Jassi@gmail.com",
+    "password": "jassi123",
+    "role": "Member",
+    "status": "Active",
+    "empId": "EMP-2389",
+    "position": "Software Engineer",
+    "assignedProjects": [
+      "1778328445357"
+    ],
+    "completedProjects": 0,
+    "lastActivity": "2026-05-10T07:01:03.146Z"
   }
 ]

@@ -1,75 +1,3 @@
-// const express = require('express');
-// const router = express.Router();
-// const { users, saveData } = require('../db');
-
-// // Login Endpoint
-// router.post('/login', (req, res) => {
-//     const { email, password, role } = req.body;
-    
-//     if (!email || !password || !role) {
-//         return res.status(400).json({ error: 'Missing required fields' });
-//     }
-
-//     // Since this is mock backend, we don't check password currently, just simulate user matching.
-//     const user = users.find(u => u.email === email);
-    
-//     if (!user) {
-//         return res.status(401).json({ error: 'Invalid email or password.' });
-//     }
-
-//     if (user.role !== role) {
-//         return res.status(403).json({ error: `Access denied. Your account is registered as ${user.role}, not ${role}.` });
-//     }
-
-//     return res.json({ message: 'Login successful', user });
-// });
-
-// // Signup Endpoint
-// router.post('/signup', (req, res) => {
-//     const { name, email, password, role } = req.body;
-
-//     if (!name || !email || !password || !role) {
-//         return res.status(400).json({ error: 'All fields are required.' });
-//     }
-    
-//     if (password.length < 6) {
-//         return res.status(400).json({ error: 'Password must be at least 6 characters.' });
-//     }
-
-//     const existingUser = users.find(u => u.email === email);
-//     if (existingUser) {
-//         return res.status(409).json({ error: 'You already have an account. Please login.' });
-//     }
-
-//     if (role === 'Admin') {
-//         const adminExists = users.some(u => u.role === 'Admin');
-//         if (adminExists) {
-//             return res.status(403).json({ error: 'An Admin already exists. Only one admin is allowed.' });
-//         }
-//     }
-
-//     const newUser = {
-//         id: String(Date.now()),
-//         name,
-//         email,
-//         role,
-//         status: 'Active',
-//         empId: `EMP-${Math.floor(1000 + Math.random() * 9000)}`,
-//         position: role === 'Admin' ? 'Administrator' : 'Software Engineer',
-//         assignedProjects: [],
-//         completedProjects: 0,
-//         lastActivity: new Date().toISOString()
-//     };
-    
-//     users.push(newUser);
-//     saveData();
-
-//     return res.status(201).json({ message: 'Account created successfully', user: newUser });
-// });
-
-// module.exports = router;
-
-
 const express = require('express');
 const router = express.Router();
 
@@ -87,9 +15,12 @@ router.post('/login', (req, res) => {
         });
     }
 
+    const trimmedEmail = email.trim().toLowerCase();
+    const trimmedPassword = password.trim();
+
     // Find user
     const user = users.find(
-        u => u.email === email
+        u => u.email.trim().toLowerCase() === trimmedEmail
     );
 
     // User not found
@@ -100,7 +31,7 @@ router.post('/login', (req, res) => {
     }
 
     // Password check
-    if (user.password !== password) {
+    if (user.password !== trimmedPassword) {
         return res.status(401).json({
             error: 'Incorrect password.'
         });
@@ -110,7 +41,7 @@ router.post('/login', (req, res) => {
     if (user.role !== role) {
         return res.status(403).json({
             error:
-              `Access denied. Your account is registered as ${user.role}.`
+                `Access denied. Your account is registered as ${user.role}.`
         });
     }
 
@@ -140,6 +71,8 @@ router.post('/signup', (req, res) => {
         });
     }
 
+    const trimmedEmail = email.trim().toLowerCase();
+
     if (password.length < 6) {
 
         return res.status(400).json({
@@ -149,7 +82,7 @@ router.post('/signup', (req, res) => {
 
     // Check existing user
     const existingUser = users.find(
-        u => u.email === email
+        u => u.email.trim().toLowerCase() === trimmedEmail
     );
 
     if (existingUser) {
@@ -170,7 +103,7 @@ router.post('/signup', (req, res) => {
 
             return res.status(403).json({
                 error:
-                  'Admin already exists. Only one admin allowed.'
+                    'Admin already exists. Only one admin allowed.'
             });
         }
     }
@@ -191,14 +124,14 @@ router.post('/signup', (req, res) => {
         status: 'Active',
 
         empId:
-          `EMP-${Math.floor(
-            1000 + Math.random() * 9000
-          )}`,
+            `EMP-${Math.floor(
+                1000 + Math.random() * 9000
+            )}`,
 
         position:
-          role === 'Admin'
-            ? 'Administrator'
-            : 'Software Engineer',
+            role === 'Admin'
+                ? 'Administrator'
+                : 'Software Engineer',
 
         assignedProjects: [],
 
