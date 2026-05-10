@@ -63,7 +63,8 @@ export default function Projects({ role, email }) {
         const data = await res.json();
 
         if (Array.isArray(data)) {
-          setProjects(data);
+          const sorted = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+          setProjects(sorted);
         } else {
           setProjects([]);
         }
