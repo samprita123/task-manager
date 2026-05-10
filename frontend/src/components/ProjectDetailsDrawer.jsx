@@ -1,3 +1,4 @@
+import { API_BASE_URL, ENDPOINTS } from '../api/config';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -75,7 +76,7 @@ export default function ProjectDetailsDrawer({
       const fetchMembers = async () => {
         try {
           const res = await fetch(
-            'http://localhost:5000/api/members',
+            `${API_BASE_URL}/members`,
             {
               headers: {
                 'x-user-role': role,

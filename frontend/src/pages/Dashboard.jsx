@@ -1,3 +1,4 @@
+import { API_BASE_URL, ENDPOINTS } from '../api/config';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { PieChart as PieIcon, TrendingUp } from 'lucide-react';
@@ -27,22 +28,22 @@ export default function Dashboard({ role, email }) {
       const fetchDashboard = async () => {
          try {
             const responses = await Promise.all([
-               fetch('http://localhost:5000/api/projects', {
+               fetch(`${API_BASE_URL}/projects`, {
                   headers: { 'x-user-role': role, 'x-user-email': email }
                }),
-               role === 'Admin' ? fetch('http://localhost:5000/api/members', {
+               role === 'Admin' ? fetch(`${API_BASE_URL}/members`, {
                   headers: { 'x-user-role': role, 'x-user-email': email }
                }) : Promise.resolve({ ok: true, json: () => [] }),
-               fetch('http://localhost:5000/api/projects/activity', {
+               fetch(`${API_BASE_URL}/projects/activity`, {
                   headers: { 'x-user-role': role, 'x-user-email': email }
                }),
-               role === 'Admin' ? fetch('http://localhost:5000/api/projects/stats/monthly', {
+               role === 'Admin' ? fetch(`${API_BASE_URL}/projects/stats/monthly`, {
                   headers: { 'x-user-role': role, 'x-user-email': email }
                }) : Promise.resolve({ ok: true, json: () => [] }),
-               role === 'Admin' ? fetch('http://localhost:5000/api/projects/stats/performance', {
+               role === 'Admin' ? fetch(`${API_BASE_URL}/projects/stats/performance`, {
                   headers: { 'x-user-role': role, 'x-user-email': email }
                }) : Promise.resolve({ ok: true, json: () => [] }),
-               role === 'Admin' ? fetch('http://localhost:5000/api/projects/stats/summary', {
+               role === 'Admin' ? fetch(`${API_BASE_URL}/projects/stats/summary`, {
                   headers: { 'x-user-role': role, 'x-user-email': email }
                }) : Promise.resolve({ ok: true, json: () => [] })
             ]);

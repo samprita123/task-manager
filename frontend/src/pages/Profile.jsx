@@ -1,3 +1,4 @@
+import { API_BASE_URL, ENDPOINTS } from '../api/config';
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { User, Mail, Briefcase, Award, TrendingUp, CheckCircle, Clock, Shield } from 'lucide-react';
@@ -9,7 +10,7 @@ export default function Profile({ email, role }) {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/members/me', {
+        const res = await fetch(`${API_BASE_URL}/members/me`, {
             headers: { 'x-user-role': role, 'x-user-email': email }
         });
         if (res.ok) {

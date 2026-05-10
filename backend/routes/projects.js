@@ -56,7 +56,9 @@ router.post('/', (req, res) => {
         dueDate,
         priority,
         createdAt: new Date().toISOString(),
-        assignedMembers: [] // Initially unassigned
+        assignedMembers: [], // Initially unassigned
+        comments: [],
+        actions: []
     };
 
     projects.push(newProject);

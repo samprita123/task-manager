@@ -1,3 +1,4 @@
+import { API_BASE_URL, ENDPOINTS } from '../api/config';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Mail, Briefcase, CheckCircle, User, BarChart, Calendar } from 'lucide-react';
@@ -15,7 +16,7 @@ export default function MemberDetailsDrawer({ member, isOpen, onClose, adminEmai
   const fetchMemberProjects = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/projects', {
+      const res = await fetch(`${API_BASE_URL}/projects`, {
         headers: { 
           'x-user-role': 'Admin', 
           'x-user-email': adminEmail 

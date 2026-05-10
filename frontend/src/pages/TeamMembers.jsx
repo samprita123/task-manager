@@ -1,3 +1,4 @@
+import { API_BASE_URL, ENDPOINTS } from '../api/config';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trash2, UserX, Briefcase, Mail, CheckCircle, ShieldAlert, Users, Info } from 'lucide-react';
@@ -12,7 +13,7 @@ export default function TeamMembers({ email }) {
    useEffect(() => {
       const fetchMembers = async () => {
          try {
-            const res = await fetch('http://localhost:5000/api/members', {
+            const res = await fetch(`${API_BASE_URL}/members`, {
                headers: { 'x-user-role': 'Admin', 'x-user-email': email }
             });
             if (res.ok) {

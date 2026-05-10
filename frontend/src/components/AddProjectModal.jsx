@@ -1,3 +1,4 @@
+import { API_BASE_URL, ENDPOINTS } from '../api/config';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Plus, Calendar, AlertTriangle, CheckCircle, Briefcase } from 'lucide-react';
@@ -19,7 +20,7 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded, admin
     setError('');
 
     try {
-      const res = await fetch('https://task-manager-kmh2.onrender.com/api/projects', {
+      const res = await fetch(`${API_BASE_URL}/projects`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
